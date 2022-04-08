@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,300&family=Rubik+Mono+One&display=swap');
+
+@import 'bigSlider.css';
+@import 'button.css';
+@import 'card.css';
+@import 'footer.css';
+@import 'megaMenu.css';
+@import 'megaMenuMobile.css';
+@import 'megaMenuDesktop.css';
+@import 'typo.css';
+
+
+
 body {
   background-color: bisque;
 }
