@@ -4,7 +4,7 @@ class HomePage extends Component {
   render() {
     return (
       <Fragment>
-        <h1>Home page</h1>
+        <h1>Home page here</h1>
       </Fragment>
     )
   }
