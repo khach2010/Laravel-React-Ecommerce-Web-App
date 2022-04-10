@@ -4,6 +4,7 @@ import {Container, Row, Col, Card} from 'react-bootstrap'
 class FeatureProducts extends Component {
   render() {
     return (
+      <>
       <Container className="text-center center-x" fluid={true}>
 
         <div className="section-title text-center mb-55">
@@ -83,6 +84,7 @@ class FeatureProducts extends Component {
         
 
       </Container>
+      </>
     )
   }
 }
