@@ -3,12 +3,13 @@ import Categories from '../components/home/Categories'
 import Collections from '../components/home/Collections'
 import FeatureProducts from '../components/home/FeatureProducts'
 import NewArrival from '../components/home/NewArrival'
+import HomeTop from '../components/home/HomeTop'
 
 class HomePage extends Component {
   render() {
     return (
       <Fragment>
-        <h1>Home page here</h1>
+        <HomeTop />
         <FeatureProducts />
         <Collections />
         <NewArrival />
