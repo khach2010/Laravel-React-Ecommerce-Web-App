@@ -7,6 +7,7 @@
 @import 'megaMenu.css';
 @import 'megaMenuMobile.css';
 @import 'megaMemuDesktop.css';
+@import 'navMenuDesktop.css';
 @import 'animate.min.css';
 @import 'typo.css';
 
@@ -19,4 +20,7 @@ body {
 .center-x {
   margin: 0 auto;
   padding: 0px 10px;
+}
+.link {
+  cursor: pointer;
 }

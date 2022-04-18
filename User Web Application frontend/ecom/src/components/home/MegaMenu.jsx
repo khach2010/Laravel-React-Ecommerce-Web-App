@@ -17,7 +17,7 @@ class MegaMenu extends Component {
       }
     });
   }
- }
+ } //end componentDidMount
 
 
   render() {
