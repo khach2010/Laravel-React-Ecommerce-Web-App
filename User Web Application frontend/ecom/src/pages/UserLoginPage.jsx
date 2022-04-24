@@ -8,6 +8,9 @@ import UserLogin from '../components/common/UserLogin'
 
 
 class UserLoginPage extends Component {
+  componentDidMount(){
+    window.scroll(0,0)
+}
      render() {
           return (
             <>

@@ -17,6 +17,9 @@ import { faBell } from '@fortawesome/free-solid-svg-icons'
 */
 
 class HomePage extends Component {
+  componentDidMount(){
+    window.scroll(0,0)
+}
   render() {
     return (
       <Fragment>

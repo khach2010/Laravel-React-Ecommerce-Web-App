@@ -6,6 +6,11 @@ import NavMenuMobile from '../components/common/NavMenuMobile'
 import Contact from '../components/common/Contact'
 
 class ContactPage extends Component {
+
+  componentDidMount(){
+    window.scroll(0,0)
+}
+
   render() {
     return (
       <>
