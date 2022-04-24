@@ -4,7 +4,7 @@ import Logo from '../../assets/images/easyshop.png';
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
-
+import MegaMenuMobile from '../home/MegaMenuMobile'
 function NavMenuMobile() {
   const [sideNav, setSideNav] = useState(false)
   return (
@@ -23,7 +23,7 @@ function NavMenuMobile() {
           <div className={sideNav ? 'sideNavOpen' : 'sideNavClose'}>
               <div className="list-group">
                 <a className="list-group-item nav-font nav-itemmenu list-group-item-action" >
-               Home 
+                  <MegaMenuMobile />
                 </a>
              </div> 
           </div>

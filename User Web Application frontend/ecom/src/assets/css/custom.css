@@ -4,13 +4,13 @@
 @import 'button.css';
 @import 'card.css';
 @import 'footer.css';
-@import 'megaMenu.css';
+@import 'megaMenuMobile.css';
+@import 'megaMenuDesktop.css';
 @import 'navMenuMobile.css';
-@import 'megaMemuDesktop.css';
 @import 'navMenuDesktop.css';
 @import 'animate.min.css';
 @import 'typo.css';
-
+@import "responsive.css";
 
 
 body {

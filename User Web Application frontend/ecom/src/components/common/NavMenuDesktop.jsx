@@ -1,12 +1,16 @@
-import React, { Component, Fragment } from 'react'
+import React, { useState } from 'react'
 import {Navbar,Container, Row, Col, Button} from 'react-bootstrap';
 import Logo from '../../assets/images/easyshop.png';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBell, faMobileAlt, faSearch, faShoppingBag } from '@fortawesome/free-solid-svg-icons'
+import { faBell, faMobileAlt, faSearch, faShoppingBag, faHeart, faBars } from '@fortawesome/free-solid-svg-icons'
+import MegaMenuMobile from '../home/MegaMenuMobile';
+// import { faBars } from '@fortawesome/free-solid-svg-icons'
 
-class NavMenuDesktop extends Component {
-  render() {
+
+function NavMenuDesktop() {
+  const [sideNav, setSideNav] = useState(false)
+
     return (
      <>
      <div className="TopSectionDown">
@@ -15,6 +19,7 @@ class NavMenuDesktop extends Component {
         <Container fluid={"true"} className="fixed-top shadow-sm p-2 mb-0 bg-white">
                 <Row >
                       <Col lg={4} md={4} sm={12} xs={12}>
+                      <FontAwesomeIcon onClick={() => setSideNav(!sideNav)} icon={faBars} />
                       <Link to="/"> <img className="nav-logo" src={Logo} /> </Link>
                      
                       </Col>
@@ -29,7 +34,10 @@ class NavMenuDesktop extends Component {
 
                       <Col className="p-1 mt-1" lg={4} md={4} sm={12} xs={12}>
                         <Link to="/" className="btn">
-                          <i className="fa h4 fa-bell"></i>
+                          <FontAwesomeIcon icon={faHeart} />
+                          <sup><span className="badge text-white bg-danger">2</span></sup>                  
+                        </Link>
+                        <Link to="/" className="btn">
                           <FontAwesomeIcon icon={faBell} />
                           <sup><span className="badge text-white bg-danger">5</span></sup>                  
                         </Link>
@@ -47,11 +55,21 @@ class NavMenuDesktop extends Component {
 
             </Container>
 
+            <div className={sideNav ? 'sideNavOpen' : 'sideNavClose'}>
+              <div className="list-group">
+                <a className="list-group-item nav-font nav-itemmenu list-group-item-action" >
+                  <MegaMenuMobile />
+                </a>
+             </div> 
+            </div>
+            <div className={sideNav ? 'ContentOverlayOpen' : 'ContentOverlayClose'}>
+            </div>
+
           </Navbar>
       </div>
      </>
     )
-  }
+  
 }
 
 export default NavMenuDesktop
