@@ -11,6 +11,8 @@
 @import 'animate.min.css';
 @import 'typo.css';
 @import "responsive.css";
+@import "onboard.css";
+@import "common.css";
 
 
 body {
