@@ -14,9 +14,16 @@
 @import "onboard.css";
 @import "common.css";
 
-
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+html {
+  height: 100% !important;
+}
 body {
-  background-color: bisque;
   margin: 0 auto;
 }
 .center-x {
