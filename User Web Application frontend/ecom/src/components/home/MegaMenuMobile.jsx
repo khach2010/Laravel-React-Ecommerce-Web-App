@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export class MegaMenuMobile extends Component {
+class MegaMenuMobile extends Component {
 
   componentDidMount() {
     var acc = document.getElementsByClassName("accordionMobile");

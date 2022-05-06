@@ -7,6 +7,7 @@ import PrivacyPage from './pages/PrivacyPage'
 import RefundPage from './pages/RefundPage'
 import PurchasePage from './pages/PurchasePage'
 import ProductDetailsPage from './pages/ProductDetailsPage'
+import NotificationPage from './pages/NotificationPage'
 function App() {
   return (
     <Routes>
@@ -17,6 +18,7 @@ function App() {
       <Route path="/refund" element={<RefundPage />} />
       <Route path="/purchase" element={<PurchasePage />} />
       <Route path="/productdetails" element={<ProductDetailsPage />} />
+      <Route path="/notification" element={<NotificationPage />} />
     </Routes>
   )
 }

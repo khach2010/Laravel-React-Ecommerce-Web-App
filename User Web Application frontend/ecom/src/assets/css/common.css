@@ -37,3 +37,6 @@ body {
 .Link:hover{
   text-decoration: none !important;
 }
+.notification-card {
+  cursor: pointer;
+}

@@ -37,7 +37,7 @@ function NavMenuDesktop() {
                           <FontAwesomeIcon icon={faHeart} />
                           <sup><span className="badge text-white bg-danger">2</span></sup>                  
                         </Link>
-                        <Link to="/" className="btn">
+                        <Link to="/notification" className="btn">
                           <FontAwesomeIcon icon={faBell} />
                           <sup><span className="badge text-white bg-danger">5</span></sup>                  
                         </Link>
