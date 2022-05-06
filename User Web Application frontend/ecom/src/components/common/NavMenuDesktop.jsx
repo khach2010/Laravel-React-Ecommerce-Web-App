@@ -33,7 +33,7 @@ function NavMenuDesktop() {
                       </Col>
 
                       <Col className="p-1 mt-1" lg={4} md={4} sm={12} xs={12}>
-                        <Link to="/" className="btn">
+                        <Link to="/favourite" className="btn">
                           <FontAwesomeIcon icon={faHeart} />
                           <sup><span className="badge text-white bg-danger">2</span></sup>                  
                         </Link>
