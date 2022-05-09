@@ -46,9 +46,9 @@ function NavMenuDesktop() {
                           </a>
                         <Link to="/login" className="btn">LOGIN</Link>
 
-                        <Button className="cart-btn">
+                        <Link to="/cart" className="cart-btn">
                           <FontAwesomeIcon icon={faShoppingBag} className='faShoppingBag'/>
-                          3 Items </Button>
+                          3 Items </Link>
                     </Col>
 
                 </Row>

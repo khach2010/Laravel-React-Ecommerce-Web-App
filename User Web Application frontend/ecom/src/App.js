@@ -9,6 +9,7 @@ import PurchasePage from './pages/PurchasePage'
 import ProductDetailsPage from './pages/ProductDetailsPage'
 import NotificationPage from './pages/NotificationPage'
 import FavouritePage from './pages/FavouritePage'
+import CartPage from './pages/CartPage'
 function App() {
   return (
     <Routes>
@@ -21,6 +22,7 @@ function App() {
       <Route path="/productdetails" element={<ProductDetailsPage />} />
       <Route path="/notification" element={<NotificationPage />} />
       <Route path="/favourite" element={<FavouritePage />} />
+      <Route path="/cart" element={<CartPage />} />
     </Routes>
   )
 }

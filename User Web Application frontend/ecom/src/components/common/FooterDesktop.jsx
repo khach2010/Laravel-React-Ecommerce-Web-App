@@ -36,12 +36,15 @@ class FooterDesktop extends Component {
                     <Link to="/purchase" className="footer-link">How To Purchase</Link><br></br>
                     <Link to="/privacy" className="footer-link"> Privacy Policy</Link><br></br>
                     <Link to="/refund" className="footer-link"> Refund Policy </Link><br></br>
+                    Change Your Language <br></br>
+                    <div id="google_translate_element">  </div>
                   </Col>
 
                   <Col className="p-2" lg={3} md={3} sm={6} xs={12}>
                     <h5 className="footer-menu-title">DOWNLOAD APPS</h5>
                     <a><img src={Google}  /></a><br></br>
                     <a><img className="mt-2" src={Apple}  /></a><br></br>
+                   
                   </Col>
 
               </Row>
