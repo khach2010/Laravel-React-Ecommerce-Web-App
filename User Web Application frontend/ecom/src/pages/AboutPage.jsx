@@ -6,6 +6,7 @@ import NavMenuMobile from '../components/common/NavMenuMobile'
 import About from '../components/others/About'
 
 
+
 export class AboutPage extends Component {
   render() {
     return (
