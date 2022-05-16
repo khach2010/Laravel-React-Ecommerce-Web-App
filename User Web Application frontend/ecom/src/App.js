@@ -10,6 +10,7 @@ import ProductDetailsPage from './pages/ProductDetailsPage'
 import NotificationPage from './pages/NotificationPage'
 import FavouritePage from './pages/FavouritePage'
 import CartPage from './pages/CartPage'
+import AboutPage from './pages/AboutPage'
 function App() {
   return (
     <Routes>
@@ -19,6 +20,7 @@ function App() {
       <Route path="/privacy" element={<PrivacyPage />} />
       <Route path="/refund" element={<RefundPage />} />
       <Route path="/purchase" element={<PurchasePage />} />
+      <Route path="/about" element={<AboutPage />} />
       <Route path="/productdetails" element={<ProductDetailsPage />} />
       <Route path="/notification" element={<NotificationPage />} />
       <Route path="/favourite" element={<FavouritePage />} />
