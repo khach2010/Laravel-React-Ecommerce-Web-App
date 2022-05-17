@@ -13,7 +13,7 @@ function About() {
       const response = await axios.get(AppURL.AllSiteInfo);
       if(response.status === 200) {
         let resData = response.data[0]['about']
-        setAbout(parse(resData))
+        setAbout(resData)
       }
       
     } catch (error) {
@@ -31,7 +31,7 @@ function About() {
     <Container>
          <Row className="p-2">
             <Col className="shadow-sm bg-white mt-2" md={12} lg={12} sm={12} xs={12}>
-             {about}
+             {parse(about)}
             </Col>
          </Row>
     </Container>
