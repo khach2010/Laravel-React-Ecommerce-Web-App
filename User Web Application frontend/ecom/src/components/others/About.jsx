@@ -7,18 +7,26 @@ import parse from 'html-react-parser'
 
 function About() {
   const [about, setAbout] = useState('')
+  let SiteAbout = sessionStorage.getItem("SiteAbout");
 
   async function getAbout() {
-    try {
-      const response = await axios.get(AppURL.AllSiteInfo);
-      if(response.status === 200) {
-        let resData = response.data[0]['about']
-        setAbout(resData)
+    if(SiteAbout === null) {
+      try {
+        const response = await axios.get(AppURL.AllSiteInfo);
+        if(response.status === 200) {
+          let resData = response.data[0]['about']
+          setAbout(resData)
+          sessionStorage.setItem('SiteAbout', resData)
+        }
+        
+      } catch (error) {
+        console.error(error);
       }
-      
-    } catch (error) {
-      console.error(error);
+    } else {
+      setAbout(SiteAbout)
     }
+
+ 
   }
 
 
