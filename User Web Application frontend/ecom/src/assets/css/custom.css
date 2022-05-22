@@ -34,3 +34,10 @@ body {
 .link {
   cursor: pointer;
 }
+a {
+  margin-right: 10px;
+  color: black;
+}
+a:hover, a:focus {
+  color: gray;
+}

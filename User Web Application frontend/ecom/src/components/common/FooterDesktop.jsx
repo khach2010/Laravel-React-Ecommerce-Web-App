@@ -1,27 +1,62 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBell, faCoffee} from '@fortawesome/free-solid-svg-icons'
+import { faTwitter, faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { Link } from 'react-router-dom'
 import Apple from '../../assets/images/apple.png'
 import Google from '../../assets/images/google.png'
+import AppURL from '../../api/AppURL'
+import axios from 'axios'
+import parse from 'html-react-parser'
 
-class FooterDesktop extends Component {
-  render() {
+function FooterDesktop () {
+  const [siteLinks, setSiteLinks] = useState({
+    address:"",
+    android_app_link:"",
+    ios_app_link:"",
+    facebook_link:"",
+    twitter_link:"",
+    instagram_link:"",
+    copyright_text:"", 
+    loaderDiv:"",
+    mainDiv:"d-none"
+}) 
+
+  async function getSiteLinks() {
+    const response = await axios.get(AppURL.AllSiteInfo);
+    let StatusCode = response.status;
+      if(StatusCode===200) {
+        let JsonData = (response.data)[0];
+        setSiteLinks({
+          address:JsonData['address'],
+          android_app_link:JsonData['android_app_link'],
+          ios_app_link:JsonData['ios_app_link'],
+          facbook_link:JsonData['facebook_link'],
+          twitter_link:JsonData['twitter_link'],
+          instagram_link:JsonData['instagram_link'],
+          copyright_text:JsonData['copyright_text'], 
+        })
+      } 
+
+
+  }
+
+  useEffect(() => {
+    getSiteLinks()
+  },[])
+
+
     return (
       <>
       <div className="footerback m-0 mt-5 pt-3 shadow-sm"> 
           <Container>
               <Row className="px-0 my-5">
                   <Col className="p-2" lg={3} md={3} sm={6} xs={12}>
-                        <h5 className="footer-menu-title">OFFICE ADDRESS</h5>
-                        <p>1635 Franklin Street Montgomery, Near Sherwood Mall. AL 36104 <br></br>
-                        Email: Support@easylearningbd.com
-                        </p>
+                    {parse(siteLinks.address)}
                         <h5 className="footer-menu-title">SOCIAL LINK</h5>
-                        <Link to="/"><FontAwesomeIcon icon={faCoffee} /></Link>
-                        <Link to="/"><FontAwesomeIcon icon={faBell} /></Link>
-                        <Link to="/"><FontAwesomeIcon icon={faCoffee} /></Link>
+                        <Link to={parse(siteLinks.twitter_link)}><FontAwesomeIcon icon={faTwitter} /></Link>
+                        <Link to="/"><FontAwesomeIcon icon={faFacebook} /></Link>
+                        <Link to="/"><FontAwesomeIcon icon={faInstagram} /></Link>
                   </Col>
 
                   <Col className="p-2" lg={3} md={3} sm={6} xs={12}>
@@ -42,17 +77,17 @@ class FooterDesktop extends Component {
 
                   <Col className="p-2" lg={3} md={3} sm={6} xs={12}>
                     <h5 className="footer-menu-title">DOWNLOAD APPS</h5>
-                    <a><img src={Google}  /></a><br></br>
-                    <a><img className="mt-2" src={Apple}  /></a><br></br>
+                    <a href={siteLinks.android_app_link}><img src={Google}  /></a><br></br>
+                    <a href={siteLinks.ios_app_link}><img className="mt-2" src={Apple}  /></a><br></br>
                    
                   </Col>
-
+                 
               </Row>
           </Container>
         </div>
         </>
     )
-  }
+  
 }
 
 export default FooterDesktop
