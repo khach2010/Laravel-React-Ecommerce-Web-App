@@ -5,6 +5,15 @@ class AppURL {
   static PostContactDetails = this.BaseURL+"/postcontact"
   static AllSiteInfo = this.BaseURL+"/allsiteinfo"
   static AllCategoryDetails = this.BaseURL+"/allcategory"
+  static ProductListByRemark(remark) {
+    return this.BaseURL+"/productlistbyremark/"+remark
+  }
+  static ProductListByCategory(category) {
+    return this.BaseURL+"/productlistbycategory/"+category
+  }
+  static ProductListBySubCategory(category, subcategory) {
+    return this.BaseURL+"/productlistbysubcategory/"+category+"/"+subcategory
+  }
  
 }
 

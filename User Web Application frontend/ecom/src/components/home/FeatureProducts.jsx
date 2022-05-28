@@ -1,9 +1,57 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import {Container, Row, Col, Card} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import AppURL from '../../api/AppURL'
+import axios from 'axios'
 
-class FeatureProducts extends Component {
-  render() {
+function FeatureProducts() {
+  const [featuredProducts, setFeaturedProducts] = useState([])
+
+  const myView = featuredProducts.map((product, i) => {
+    const {title, price, image, remark, special_price} =  product
+    if(special_price === 'na') {
+      return ( <Col key={i} className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
+      <Link to={`/${remark}/${title}`} >
+        <Card className="image-box card">
+          <img className="center" src={image} />   
+          <Card.Body> 
+          <p className="product-name-on-card">{title}</p>
+          <p className="product-price-on-card">Price : ${price}</p>
+          </Card.Body>
+          </Card>
+        </Link> 
+    </Col>)
+    } else {
+      return ( <Col key={i} className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
+      <Link to={`/${remark}/${title}`} >
+        <Card className="image-box card">
+          <img className="center" src={image} />   
+          <Card.Body> 
+          <p className="product-name-on-card">{title}</p>
+          <p className="product-price-on-card">Price : <strike>${price}</strike> - ${special_price}</p>
+          </Card.Body>
+          </Card>
+        </Link> 
+    </Col>)
+    }
+   
+  }) 
+
+  async function getFeaturedProducts() {
+    try {
+      const response = await axios.get(AppURL.ProductListByRemark("Featured"))
+      setFeaturedProducts(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getFeaturedProducts()
+  }, []);
+  
+
+
     return (
       <>
       <Container className="text-center center-x" fluid={true}>
@@ -14,74 +62,18 @@ class FeatureProducts extends Component {
         </div>
         <div className="center-x">
           <Row>
-
-          <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-            <Link to="/productdetails" >
-              <Card className="image-box card">
-                <img className="center" src="https://rukminim1.flixcart.com/image/416/416/kn7sdjk0/mobile/q/j/x/c21-rmx3201-realme-original-imagfxfwbszrxkvu.jpeg?q=70" />   
-                <Card.Body> 
-                <p className="product-name-on-card">Realme C21 (Cross Black, 64 GB)</p>
-                <p className="product-price-on-card">Price : $120</p>
-                </Card.Body>
-                </Card>
-              </Link> 
-          </Col>
-
-          <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-            <Card className="image-box card">
-              <img className="center" src="https://rukminim1.flixcart.com/image/416/416/knm2s280/mobile/j/x/c/hot-10-play-x688b-infinix-original-imag29gxqzuxkmnk.jpeg?q=70" />   
-              <Card.Body> 
-              <p className="product-name-on-card">Realme C21 (Cross Blue, 64 GB)</p>
-              <p className="product-price-on-card">Price : $120</p>
-
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-          <Card className="image-box card">
-                <img className="center" src="https://rukminim1.flixcart.com/image/416/416/kn7sdjk0/mobile/g/r/g/c21-rmx3201-realme-original-imagfxfwn9aryyda.jpeg?q=70" />   
-                <Card.Body> 
-                <p className="product-name-on-card">Realme C21 (Cross Black, 64 GB)</p>
-                <p className="product-price-on-card">Price : $120</p>
-
-                </Card.Body>
-                </Card>
-          </Col>
-
-          <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-          <Card className="image-box card">
-                <img className="center" src="https://rukminim1.flixcart.com/image/416/416/knm2s280/mobile/v/l/u/hot-10-play-x688b-infinix-original-imag29hfaedkgdfe.jpeg?q=70" />   
-                <Card.Body> 
-                <p className="product-name-on-card">Realme C21 (Cross Black, 64 GB)</p>
-                <p className="product-price-on-card">Price : $120</p>
-
-                </Card.Body>
-                </Card>
-          </Col>
-
-          <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-          <Card className="image-box card">
-                <img className="center" src="https://rukminim1.flixcart.com/image/416/416/knrsjgw0/mobile/f/o/w/8-5g-rmx3241-realme-original-imag2d8eksc2szzy.jpeg?q=70" />   
-                <Card.Body> 
-                <p className="product-name-on-card">Realme C21 (Cross Black, 64 GB)</p>
-                <p className="product-price-on-card">Price : $120</p>
-
-                </Card.Body>
-                </Card>
-          </Col>
-
-          <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-          <Card className="image-box card">
-                <img className="center" src="https://rukminim1.flixcart.com/image/416/416/kd69z0w0/mobile/a/n/g/mi-redmi-note-9-b086982zkf-original-imafu4qf8gfcutde.jpeg?q=70" />   
-                <Card.Body> 
-                <p className="product-name-on-card">Realme C21 (Cross Black, 64 GB)</p>
-                <p className="product-price-on-card">Price : $120</p>
-
-                </Card.Body>
-                </Card>
-          </Col>
-
+            {myView}
+            {/* <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
+              <Link to="/productdetails" >
+                <Card className="image-box card">
+                  <img className="center" src="https://rukminim1.flixcart.com/image/416/416/kn7sdjk0/mobile/q/j/x/c21-rmx3201-realme-original-imagfxfwbszrxkvu.jpeg?q=70" />   
+                  <Card.Body> 
+                  <p className="product-name-on-card">Realme C21 (Cross Black, 64 GB)</p>
+                  <p className="product-price-on-card">Price : $120</p>
+                  </Card.Body>
+                  </Card>
+                </Link> 
+            </Col> */}
           </Row>
         </div>
         
@@ -89,7 +81,7 @@ class FeatureProducts extends Component {
       </Container>
       </>
     )
-  }
+  
 }
 
 export default FeatureProducts
