@@ -12,6 +12,7 @@ import FavouritePage from './pages/FavouritePage'
 import CartPage from './pages/CartPage'
 import AboutPage from './pages/AboutPage'
 import ProductCategoryPage from './pages/ProductCategoryPage'
+import ProductSubCategoryPage from './pages/ProductSubCategoryPage'
 function App() {
   return (
     <Routes>
@@ -29,6 +30,10 @@ function App() {
       <Route
         path="/productcategory/:category"
         element={<ProductCategoryPage />}
+      />
+      <Route
+        path="/productsubcategory/:category/:subcategory"
+        element={<ProductSubCategoryPage />}
       />
     </Routes>
   )

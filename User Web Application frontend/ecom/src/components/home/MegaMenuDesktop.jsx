@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 
 function MegaMenuDesktop({data}) {
   const MenuItemClick = (e) => {
@@ -20,7 +21,7 @@ function MegaMenuDesktop({data}) {
                   <div className="panel">
                     <ul>
                       {subcategory_name.map((sub, ix) => {
-                        return <li key={ix}><a href="#" className="accordionItem" > {sub.subcategory_name} </a></li>
+                        return <li key={ix}><Link to={`/productsubcategory/${category_name}/${sub.subcategory_name}`} className="accordionItem" > {sub.subcategory_name} </Link></li>
                       })}
                     </ul>
                   </div>
