@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AppURL from '../../api/AppURL'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 function MegaMenuMobile() {
 
@@ -24,7 +25,7 @@ function MegaMenuMobile() {
                   <div className="panelMobile">
                     <ul>
                       {subcategory_name.map((sub, ix) => {
-                        return <li key={ix}><a href="#" className="accordionItemMobile" > {sub.subcategory_name} </a></li>
+                        return <li key={ix}><Link to={`/productsubcategory/${category_name}/${sub.subcategory_name}`} className="accordionItemMobile" > {sub.subcategory_name} </Link></li>
                       })}
                     </ul>
                   </div>

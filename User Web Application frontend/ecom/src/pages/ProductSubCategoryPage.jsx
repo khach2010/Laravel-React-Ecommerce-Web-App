@@ -6,17 +6,16 @@ import NavMenuMobile from '../components/common/NavMenuMobile'
 import { useParams } from 'react-router-dom';
 import AppURL from '../api/AppURL'
 import axios from 'axios'
-import { Link } from 'react-router-dom';
 import SubCategory from '../components/ProductDetails/SubCategory'
 
 function ProductSubCategoryPage() {
   const [productSubCategoryData, setProductSubCategoryData] = useState([])
   const {category} = useParams()
-  const {subCategory} = useParams()
+  const {subcategory} = useParams()
 
   async function getProductSubCategoryData() {
     try {
-      const response = await axios.get(AppURL.ProductListBySubCategory(category, subCategory))
+      const response = await axios.get(AppURL.ProductListBySubCategory(category, subcategory))
       setProductSubCategoryData(response.data)
     } catch (error) {
       console.log(error)
@@ -37,7 +36,7 @@ function ProductSubCategoryPage() {
     <NavMenuMobile />  
     </div>                       
    
-    <SubCategory category={category} subCategory={subCategory} productSubCategoryData={productSubCategoryData} />
+    <SubCategory category={category} subcategory={subcategory} productSubCategoryData={productSubCategoryData} />
 
     <div className="Desktop">
     <FooterDesktop/>
