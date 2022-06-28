@@ -3,13 +3,9 @@ import {Container,Row, Card} from 'react-bootstrap'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import Slider1 from '../../assets//images/slider1.jpeg'
-import Slider2 from '../../assets//images/slider2.jpeg'
-import Slider3 from '../../assets//images/slider3.jpeg'
 
-class HomeSlider extends Component {
-  render() {
-
+function HomeSlider({data}) {
+  console.log(data)
     var settings = {
       dots: true,
       infinite: true,
@@ -47,24 +43,20 @@ class HomeSlider extends Component {
         }
       ]
     };
-
+    const myView = data.map((sliderPhoto, i) => {
+      return   <div key={i}>
+                <img className="slider-img" src={sliderPhoto.slider_image} alt="sliderphoto" />
+              </div>
+    })
 
        return (
           <div>
             <Slider {...settings}>
-              <div>
-                <img className="slider-img" src={Slider1} />
-              </div>
-              <div>
-                <img className="slider-img" src={Slider2} />
-              </div>
-              <div>
-                <img className="slider-img" src={Slider3} />
-              </div>
+              {myView}
             </Slider>
           </div>
        )
-  }
+
 }
 
 export default HomeSlider

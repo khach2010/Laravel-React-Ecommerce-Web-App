@@ -7,6 +7,7 @@ import axios from 'axios'
 
 function HomeTop() {
   const [menuData,  setMenuData] = useState([])
+  const [allSliderData,  setAllSliderData] = useState([])
 
   async function getMenuData() {
     try {
@@ -17,8 +18,18 @@ function HomeTop() {
     }
   }
 
+  async function getAllSliderData() {
+    try {
+      const response = await axios.get(AppURL.AllSlider)
+      setAllSliderData(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     getMenuData()
+    getAllSliderData()
   }, []);
 
 
@@ -31,7 +42,7 @@ function HomeTop() {
                   </Col>
 
                   <Col lg={9} md={9} sm={12}>
-                  <HomeSlider />
+                  <HomeSlider data={allSliderData} />
                   </Col>
               </Row>
         </Container>
