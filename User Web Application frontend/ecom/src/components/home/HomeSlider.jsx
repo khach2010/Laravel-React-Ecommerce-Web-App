@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {Container,Row, Card} from 'react-bootstrap'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
 function HomeSlider({data}) {
-  console.log(data)
+
     var settings = {
       dots: true,
       infinite: true,
@@ -44,7 +44,7 @@ function HomeSlider({data}) {
       ]
     };
     const myView = data.map((sliderPhoto, i) => {
-      return   <div key={i}>
+      return   <div key={sliderPhoto.slider_image}>
                 <img className="slider-img" src={sliderPhoto.slider_image} alt="sliderphoto" />
               </div>
     })

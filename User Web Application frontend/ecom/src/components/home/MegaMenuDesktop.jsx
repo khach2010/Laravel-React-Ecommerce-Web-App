@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 
 function MegaMenuDesktop({data}) {
@@ -14,14 +14,14 @@ function MegaMenuDesktop({data}) {
   
   const MyView = data.map((cat, i) => {
     const {category_name, category_image, subcategory_name} = cat
-      return <div key={i.toString} >
+      return <div key={category_name+i} >
                   <button onClick={MenuItemClick} className="accordion">
                     <img className="accordionMenuIcon" src={category_image} />&nbsp; {category_name}
                   </button>
                   <div className="panel">
                     <ul>
                       {subcategory_name.map((sub, ix) => {
-                        return <li key={ix}><Link to={`/productsubcategory/${category_name}/${sub.subcategory_name}`} className="accordionItem" > {sub.subcategory_name} </Link></li>
+                        return <li key={subcategory_name+ix}><Link to={`/productsubcategory/${category_name}/${sub.subcategory_name}`} className="accordionItem" > {sub.subcategory_name} </Link></li>
                       })}
                     </ul>
                   </div>

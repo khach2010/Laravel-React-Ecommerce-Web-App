@@ -1,30 +1,37 @@
 import React from 'react'
 import {Container,Row,Col,Card} from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 function SubCategory({productSubCategoryData, category, subcategory}) {
 
   const myView = productSubCategoryData.map((productList, i) => {
-    const {image, title, price, special_price} = productList
+    const {image, title, price, special_price, id} = productList
     if(special_price=="na") {
-      return   <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
-                <Card className="image-box card w-100">
-                <img className="center w-75" src={image} />   
-                <Card.Body> 
-                <p className="product-name-on-card">{title}</p>
-                <p className="product-price-on-card">Price : ${price}</p>
-                </Card.Body>
-                </Card>          
-               </Col>
+      return (
+        <Col key={title+id} className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
+           <Link to={"/productdetails/"+id} ></Link>
+          <Card className="image-box card w-100">
+          <img className="center w-75" src={image} />   
+          <Card.Body> 
+          <p className="product-name-on-card">{title}</p>
+          <p className="product-price-on-card">Price : ${price}</p>
+          </Card.Body>
+          </Card>          
+        </Col>
+      )  
     } else {
-      return   <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
-                <Card className="image-box card w-100">
-                <img className="center w-75" src={image} />   
-                <Card.Body> 
-                <p className="product-name-on-card">{title}</p>
-                <p className="product-price-on-card">Price : <strike className="text-secondary">${price}</strike> ${special_price}</p>
-                </Card.Body>
-                </Card>          
-              </Col>
+      return  (
+        <Col key={title+id} className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
+           <Link to={"/productdetails/"+id} ></Link>
+          <Card className="image-box card w-100">
+          <img className="center w-75" src={image} />   
+          <Card.Body> 
+          <p className="product-name-on-card">{title}</p>
+          <p className="product-price-on-card">Price : <strike className="text-secondary">${price}</strike> ${special_price}</p>
+          </Card.Body>
+          </Card>          
+        </Col>
+      ) 
     }
   })
 

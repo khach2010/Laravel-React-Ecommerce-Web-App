@@ -9,10 +9,12 @@ function Collections() {
   const [collectionProducts, setCollectionProducts] = useState([])
 
   const myView = collectionProducts.map((product, i) => {
-    const {title, price, image, remark, special_price} =  product
+    const {title, price, image, remark, special_price, id} =  product
     if(special_price === 'na') {
-      return <Col key={i+title} className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
-                <Link to={`/${remark}/${title}`} >
+      return (
+        
+        <Col key={i+title} className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
+                <Link to={"/productdetails/"+id} >
                     <Card className="image-box card w-100">
                       <img className="center w-75" src={image} alt={title}/>   
                       <Card.Body> 
@@ -23,9 +25,10 @@ function Collections() {
                     </Card>          
                 </Link>
             </Col>
+      ) 
     } else {
       return <Col key={i+title} className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
-                <Link to={`/${remark}/${title}`} >
+                 <Link to={"/productdetails/"+id} >
                   <Card className="image-box card w-100">
                       <img className="center w-75" src={image} alt={title}/>   
                       <Card.Body> 

@@ -3,6 +3,7 @@ import {Container,Row, Card} from 'react-bootstrap'
 import Slider from "react-slick";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 import AppURL from '../../api/AppURL'
 import axios from 'axios'
 
@@ -14,28 +15,33 @@ function NewArrival() {
   const [slider , setSlider] = useState()
 
   const myView = newArrival.map((product, i) => {
-    const {title, price, image, special_price} =  product
+    const {title, price, image, special_price, id} =  product
     if(special_price === 'na') {
-      return  <div key={i}>
+      return  <div key={title+id}>
+               <Link to={"/productdetails/"+id} >
                 <Card className="image-box card">
-                  <img className="center" src={image} />   
-                  <Card.Body> 
-                  <p className="product-name-on-card">{title}</p>
-                  <p className="product-price-on-card">Price : ${price}</p>
+                    <img className="center" src={image} />   
+                    <Card.Body> 
+                    <p className="product-name-on-card">{title}</p>
+                    <p className="product-price-on-card">Price : ${price}</p>
 
-                  </Card.Body>
-                </Card>
+                    </Card.Body>
+                  </Card>
+               </Link>
+             
               </div>
     } else {
-      return  <div key={i}>
-                <Card className="image-box card">
-                  <img className="center" src={image} />   
-                  <Card.Body> 
-                  <p className="product-name-on-card">{title}</p>
-                  <p className="product-price-on-card">Price : <strike>${price}</strike> - ${special_price}</p>
+      return  <div key={title+id}>
+                <Link to={"/productdetails/"+id} >
+                  <Card className="image-box card">
+                    <img className="center" src={image} />   
+                    <Card.Body> 
+                    <p className="product-name-on-card">{title}</p>
+                    <p className="product-price-on-card">Price : <strike>${price}</strike> - ${special_price}</p>
 
-                  </Card.Body>
-                </Card>
+                    </Card.Body>
+                  </Card>
+                </Link>
               </div>
     }
   })

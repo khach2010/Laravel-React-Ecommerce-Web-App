@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { useEffect } from 'react'
 import Categories from '../components/home/Categories'
 import Collections from '../components/home/Collections'
 import FeatureProducts from '../components/home/FeatureProducts'
@@ -12,27 +12,20 @@ import FooterMobile from '../components/common/FooterMobile'
 import axios from 'axios'
 import AppURL from '../api/AppURL'
 
-/* 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBell } from '@fortawesome/free-solid-svg-icons'
-  <FontAwesomeIcon icon={faBell} />
-*/
-
-class HomePage extends Component {
+function HomePage() {
   
-  componentDidMount(){
-    window.scroll(0,0)
-    this.GetVisitorDetails();
-  }
-
-  GetVisitorDetails =()=>{
+  const GetVisitorDetails = () => {
     axios.get(AppURL.VisitorDetails).then().catch()
   }
 
+  useEffect(() => {
+    window.scroll(0,0)
+    GetVisitorDetails()
+  }, [])
 
-  render() {
+  
     return (
-      <Fragment>
+      <>
         <div className="Desktop">
           <NavMenuDesktop />
           <HomeTop />
@@ -58,9 +51,9 @@ class HomePage extends Component {
           <FooterMobile/>
         </div>
         
-      </Fragment>
+      </>
     )
-  }
+  
 }
 
 export default HomePage

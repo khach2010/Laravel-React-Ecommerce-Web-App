@@ -23,7 +23,11 @@ function App() {
       <Route exact path="/refund" element={<RefundPage />} />
       <Route exact path="/purchase" element={<PurchasePage />} />
       <Route exact path="/about" element={<AboutPage />} />
-      <Route exact path="/productdetails" element={<ProductDetailsPage />} />
+      <Route
+        exact
+        path="/productdetails/:code"
+        element={<ProductDetailsPage />}
+      />
       <Route path="/notification" element={<NotificationPage />} />
       <Route exact path="/favourite" element={<FavouritePage />} />
       <Route exact path="/cart" element={<CartPage />} />

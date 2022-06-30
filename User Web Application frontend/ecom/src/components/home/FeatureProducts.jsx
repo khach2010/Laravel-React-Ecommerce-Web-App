@@ -8,10 +8,10 @@ function FeatureProducts() {
   const [featuredProducts, setFeaturedProducts] = useState([])
 
   const myView = featuredProducts.map((product, i) => {
-    const {title, price, image, remark, special_price} =  product
+    const {title, price, image, remark, special_price, id} =  product
     if(special_price === 'na') {
       return ( <Col key={i} className="p-1" xl={2} lg={2} md={2} sm={4} xs={6}>
-      <Link to={`/${remark}/${title}`} >
+      <Link to={"/productdetails/"+id} >
         <Card className="image-box card">
           <img className="center" src={image} alt={title}/>   
           <Card.Body> 
@@ -23,7 +23,7 @@ function FeatureProducts() {
     </Col>)
     } else {
       return ( <Col key={i} className="p-1"  xl={2} lg={2} md={2} sm={4} xs={6}>
-      <Link to={`/${remark}/${title}`} >
+       <Link to={"/productdetails/"+id} >
         <Card className="image-box card">
           <img className="center" src={image} alt={title}/>   
           <Card.Body> 
