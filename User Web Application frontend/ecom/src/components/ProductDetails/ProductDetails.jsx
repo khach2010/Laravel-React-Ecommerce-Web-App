@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Container,Row,Col, Form,Button } from 'react-bootstrap'
 import ReactDOM from 'react-dom'
 
-
 function ProductDetails({dataDetails, dataList}) {
-     console.log(dataDetails)
-     console.log(dataList)
+  
      const myView = chooseDataView (dataDetails, dataList)
 
      function chooseDataView(details, list){
@@ -15,13 +13,14 @@ function ProductDetails({dataDetails, dataList}) {
                     <h1>No data for datails</h1>
                    </div>
                )
-          } else if (dataList.length == 0) {
+          } else if (list.length == 0) {
                return (
                     <div>
                      <h1>No data for list</h1>
                     </div>
                 )
-          } else {
+          } 
+          else {
                const {product_id, color, size, short_description, long_description, image_one, image_two, image_three,image_four} = dataDetails[0]
               const {brand, category, id, image, price, product_code,remark, special_price, star, subcategory, title} = dataList[0]
               
@@ -67,10 +66,43 @@ function ProductDetails({dataDetails, dataList}) {
           <h6 className="mt-2">SubCategory : <b>{subcategory}</b></h6>
           <h6 className="mt-2">Brand : <b>{brand}</b></h6>
           <h6 className="mt-2">Product Code : <b>{product_code}</b></h6>
- 
-           <h6 className="mt-2">Quantity</h6>
-           <input  className="form-control text-center w-50" type="number" />
- 
+        
+          <div className=''>
+               <h6 className="mt-2"> Choose Color: <span>{color}</span></h6>
+             
+               <select className="form-control form-select">
+                    {color.split(',').map((c,i) => (
+                         <option value={c}>{c}</option>
+                    ))}
+               </select> 
+          </div>
+          <div className=''>
+               <h6 className="mt-2"> Choose Size: <span>{size}</span></h6>
+             
+               <select className="form-control form-select">
+                    {size.split(',').map((s,i) => (
+                         <option value={s}>{s}</option>
+                    ))}
+               </select> 
+          </div>
+     
+          <div className="" >
+               <h6 className="mt-2"> Choose Quantity  </h6>
+               <select className="form-control form-select">
+               <option>Choose Quantity</option>
+               <option value="01">01</option>
+               <option value="02">02</option>
+               <option value="03">03</option>
+               <option value="04">04</option>
+               <option value="05">05</option>
+               <option value="06">06</option>
+               <option value="07">07</option>
+               <option value="08">08</option>
+               <option value="09">09</option>
+               <option value="10">10</option> 
+               </select> 
+          </div>
+
            <div className="input-group mt-3">
                 <button className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i>  Add To Cart</button>
                 <button className="btn btn-primary m-1"> <i className="fa fa-car"></i> Order Now</button>
