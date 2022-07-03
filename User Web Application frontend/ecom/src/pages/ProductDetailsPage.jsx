@@ -11,13 +11,15 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 function ProductDetailsPage() {
-   const [productData, setProductData] = useState([])
+  const [productDataDetails, setProductDataDetails] = useState([])
+  const [productDataList, setProductDataList] = useState([])
    const {code} = useParams()
    
    async function getProductData() {
      try {
        const response = await axios.get(AppURL.ProductDetails(code))
-       setProductData(response.data)
+       setProductDataDetails(response.data['productDetails'])
+       setProductDataList(response.data['productList'])
      } catch (error) {
        console.log(error)
      }
@@ -27,7 +29,6 @@ function ProductDetailsPage() {
           window.scroll(0,0)
           getProductData()
      }, [])
-
      
           return (
                <> 
@@ -38,8 +39,9 @@ function ProductDetailsPage() {
                <div className="Mobile">
                <NavMenuMobile />  
                </div>                       
-
-               <ProductDetails data={productData} /> 
+  
+               <ProductDetails dataDetails={productDataDetails} dataList={productDataList}/> 
+         
                <SuggestedProduct />
 
                <div className="Desktop">
