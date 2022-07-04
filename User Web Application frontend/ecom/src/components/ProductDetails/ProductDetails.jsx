@@ -58,9 +58,14 @@ function ProductDetails({dataDetails, dataList}) {
            <h5 className="Product-Name">{title}</h5>
            <h6 className="section-sub-title">{short_description}</h6>
            <div className="input-group">
-                <div className="Product-price-card d-inline ">${price}</div>
-                <div className="Product-price-card d-inline ">50% Discount</div>
-                <div className="Product-price-card d-inline ">New Price ${special_price}</div>
+               <div className="Product-price-card d-inline ">{
+                    special_price === 'no' ?  (
+                         <p className="product-price-on-card"> Price : ${price} </p>
+                         ) : (
+                         <p className="product-price-on-card">
+                         Price : <strike className="text-secondary">${price} </strike> ${special_price}
+                             </p>)}
+               </div>
            </div>
           <h6 className="mt-2">Category : <b>{category}</b>  </h6>       
           <h6 className="mt-2">SubCategory : <b>{subcategory}</b></h6>
