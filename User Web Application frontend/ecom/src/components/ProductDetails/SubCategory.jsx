@@ -1,6 +1,8 @@
 import React from 'react'
 import {Container,Row,Col,Card} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import Breadcrumb from 'react-bootstrap/Breadcrumb'
+
 
 function SubCategory({productSubCategoryData, category, subcategory}) {
 
@@ -37,6 +39,16 @@ function SubCategory({productSubCategoryData, category, subcategory}) {
 
   return (
     <Container className="text-center" fluid={true}>
+      <div className="breadbody">
+          <Breadcrumb>
+            <Breadcrumb.Item> <Link to="/"> Home </Link> </Breadcrumb.Item>
+
+            <Breadcrumb.Item> <Link to={"/productcategory/"+category}> {category } </Link> </Breadcrumb.Item>   
+
+            <Breadcrumb.Item> <Link to={"/productsubcategory/"+category+"/"+subcategory}> {subcategory } </Link> </Breadcrumb.Item>   
+        </Breadcrumb>
+      </div>
+
     <div className="section-title text-center mb-55">
       <h2> {category } / {subcategory}  </h2>
     </div>
