@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {Navbar,Container, Row, Col, Button} from 'react-bootstrap';
 import Logo from '../../assets/images/easyshop.png';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faMobileAlt, faSearch, faShoppingBag, faHeart, faBars } from '@fortawesome/free-solid-svg-icons'
 import MegaMenuMobile from '../home/MegaMenuMobile';
@@ -9,7 +9,22 @@ import MegaMenuMobile from '../home/MegaMenuMobile';
 
 
 function NavMenuDesktop() {
+  let navigate = useNavigate();
+
   const [sideNav, setSideNav] = useState(false)
+  const [searchKey, setSearchKey] = useState('')
+
+  const SearchOnChange = (e) => {
+    setSearchKey(e.target.value)
+  }
+
+  const handleSubmit = () => {
+    if(searchKey.length >= 2) {
+      navigate('/productbysearch/'+searchKey, { replace: true });
+    }
+  } 
+
+
 
     return (
      <>
@@ -26,9 +41,13 @@ function NavMenuDesktop() {
 
                       <Col className="p-1 mt-1" lg={4} md={4} sm={12} xs={12}>
                           <div className="input-group w-100">
-                          <input type="text" className="form-control" />
-                          <Button type="button" className="btn site-btn"><FontAwesomeIcon icon={faSearch} />
-                          </Button>
+                          
+                          <form onSubmit={handleSubmit} >
+                            <input onChange={SearchOnChange} type="text" className="form-control" />
+                            <Button type='submit' className="btn site-btn"><FontAwesomeIcon icon={faSearch} />
+                            </Button>
+                          </form>
+                        
                           </div>
                       </Col>
 

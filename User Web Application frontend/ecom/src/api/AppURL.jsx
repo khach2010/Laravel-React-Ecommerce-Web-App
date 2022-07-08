@@ -21,6 +21,9 @@ class AppURL {
   static ProductDetails(code) {
     return this.BaseURL+"/productdetails/"+code
   }
+  static ProductBySearch(searchkey){
+    return this.BaseURL+"/search/"+searchkey;
+}
    
 }
 

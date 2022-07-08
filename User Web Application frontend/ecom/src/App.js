@@ -13,6 +13,7 @@ import CartPage from './pages/CartPage'
 import AboutPage from './pages/AboutPage'
 import ProductCategoryPage from './pages/ProductCategoryPage'
 import ProductSubCategoryPage from './pages/ProductSubCategoryPage'
+import SearchPage from './pages/SearchPage'
 function App() {
   return (
     <Routes>
@@ -39,6 +40,7 @@ function App() {
         path="/productsubcategory/:category/:subcategory"
         element={<ProductSubCategoryPage />}
       />
+      <Route path="/productbysearch/:searchKey" element={<SearchPage />} />
     </Routes>
   )
 }
