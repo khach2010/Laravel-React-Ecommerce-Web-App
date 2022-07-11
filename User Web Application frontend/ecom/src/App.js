@@ -14,12 +14,18 @@ import AboutPage from './pages/AboutPage'
 import ProductCategoryPage from './pages/ProductCategoryPage'
 import ProductSubCategoryPage from './pages/ProductSubCategoryPage'
 import SearchPage from './pages/SearchPage'
+import RegisterPage from './pages/RegisterPage'
+import ForgetPasswordPage from './pages/ForgetPasswordPage'
+import ResetPasswordPage from './pages/ResetPasswordPage'
 function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route exact path="/contact" element={<ContactPage />} />
       <Route exact path="/login" element={<UserLoginPage />} />
+      <Route exact path="/register" element={<RegisterPage />} />
+      <Route exact path="/forgetpassword" element={<ForgetPasswordPage />} />
+      <Route exact path="/resetpassword" element={<ResetPasswordPage />} />
       <Route exact path="/privacy" element={<PrivacyPage />} />
       <Route exact path="/refund" element={<RefundPage />} />
       <Route exact path="/purchase" element={<PurchasePage />} />

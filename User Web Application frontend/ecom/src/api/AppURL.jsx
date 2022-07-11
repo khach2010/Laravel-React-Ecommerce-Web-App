@@ -16,6 +16,8 @@ class AppURL {
   }
   static AllSlider = this.BaseURL+"/allslider"
   
+  static Login = this.BaseURL+"/login"
+  
   static NotificationHistory = this.BaseURL+"/notification"
   
   static ProductDetails(code) {

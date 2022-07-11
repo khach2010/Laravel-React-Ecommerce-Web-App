@@ -64,6 +64,7 @@ function NavMenuDesktop() {
                           <FontAwesomeIcon icon={faMobileAlt} />
                           </a>
                         <Link to="/login" className="btn">LOGIN</Link>
+                        <Link to="/register" className="btn">REGISTER</Link>
 
                         <Link to="/cart" className="cart-btn">
                           <FontAwesomeIcon icon={faShoppingBag} className='faShoppingBag'/>
