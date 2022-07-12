@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import ContactPage from './pages/ContactPage'
 import HomePage from './pages/HomePage'
@@ -17,12 +17,36 @@ import SearchPage from './pages/SearchPage'
 import RegisterPage from './pages/RegisterPage'
 import ForgetPasswordPage from './pages/ForgetPasswordPage'
 import ResetPasswordPage from './pages/ResetPasswordPage'
+import AppURL from './api/AppURL'
+import axios from 'axios'
+import ProfilePage from './pages/ProfilePage'
+
 function App() {
+  const [userProfile, setUserProfile] = useState('')
+
+  async function getUserProfile() {
+    try {
+      const response = await axios.get(AppURL.UserData)
+      setUserProfile(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getUserProfile()
+  }, [])
+
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route exact path="/contact" element={<ContactPage />} />
       <Route exact path="/login" element={<UserLoginPage />} />
+      <Route
+        exact
+        path="/profile"
+        element={<ProfilePage userProfile={userProfile} />}
+      />
       <Route exact path="/register" element={<RegisterPage />} />
       <Route exact path="/forgetpassword" element={<ForgetPasswordPage />} />
       <Route exact path="/resetpassword" element={<ResetPasswordPage />} />

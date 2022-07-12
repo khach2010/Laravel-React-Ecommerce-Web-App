@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import { Container,Row,Col, Form,Button } from 'react-bootstrap'
 import Login from '../../assets/images/login.png'
 import AppURL from '../../api/AppURL';
@@ -20,7 +20,6 @@ function UserLogin() {
   
    try {
     const response = await axios.post(AppURL.Login, formData)
-    console.log(response)
     if(response.status === 200) {
       
       setUserData(response.data.user)
@@ -61,7 +60,7 @@ function UserLogin() {
               </Col>
 
               <Col className="p-0 Desktop m-0" md={6} lg={6} sm={6} xs={6}>
-                  <img className="onboardBanner" src={Login} />
+                  <img className="onboardBanner" src={Login} alt=''/>
               </Col>
             </Row>
 

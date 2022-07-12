@@ -35,7 +35,7 @@ function NavMenuDesktop() {
                 <Row >
                       <Col lg={4} md={4} sm={12} xs={12}>
                       <FontAwesomeIcon onClick={() => setSideNav(!sideNav)} icon={faBars} />
-                      <Link to="/"> <img className="nav-logo" src={Logo} /> </Link>
+                      <Link to="/"> <img className="nav-logo" src={Logo} alt='' /> </Link>
                      
                       </Col>
 
@@ -60,11 +60,11 @@ function NavMenuDesktop() {
                           <FontAwesomeIcon icon={faBell} />
                           <sup><span className="badge text-white bg-danger">5</span></sup>                  
                         </Link>
-                        <a className="btn">
+                        <Link to='/' className="btn">
                           <FontAwesomeIcon icon={faMobileAlt} />
-                          </a>
+                          </Link>
                         <Link to="/login" className="btn">LOGIN</Link>
-                        <Link to="/register" className="btn">REGISTER</Link>
+                        <Link to="/register" className="btn"></Link>
 
                         <Link to="/cart" className="cart-btn">
                           <FontAwesomeIcon icon={faShoppingBag} className='faShoppingBag'/>
@@ -77,9 +77,9 @@ function NavMenuDesktop() {
 
             <div className={sideNav ? 'sideNavOpen' : 'sideNavClose'}>
               <div className="list-group">
-                <a className="list-group-item nav-font nav-itemmenu list-group-item-action" >
+                <Link to='/' className="list-group-item nav-font nav-itemmenu list-group-item-action" >
                   <MegaMenuMobile />
-                </a>
+                </Link>
              </div> 
             </div>
             <div className={sideNav ? 'ContentOverlayOpen' : 'ContentOverlayClose'}>

@@ -15,8 +15,9 @@ class AppURL {
     return this.BaseURL+"/productlistbysubcategory/"+category+"/"+subcategory
   }
   static AllSlider = this.BaseURL+"/allslider"
-  
+
   static Login = this.BaseURL+"/login"
+  static UserData = this.BaseURL+"/user"
   
   static NotificationHistory = this.BaseURL+"/notification"
   
