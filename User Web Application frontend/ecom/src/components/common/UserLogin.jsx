@@ -9,8 +9,6 @@ function UserLogin() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
-  const [userData, setUserData] = useState('')
-  const [logined, setLogined] = useState(false)
 
   let navigate = useNavigate();
   
@@ -21,18 +19,19 @@ function UserLogin() {
    try {
     const response = await axios.post(AppURL.Login, formData)
     if(response.status === 200) {
-      
-      setUserData(response.data.user)
-      setMessage('successfully Login')
-      setLogined(true)
+      console.log(response.data)
+      const {id, name, email} = response.data.user
       localStorage.setItem('token',response.data.token);
-      navigate("/profile");
+      setMessage('successfully Login')
+
+      navigate("/profile", {state: {id, name, email, msg: 'successfully Login'}});
 
     } else {
-      setMessage('something goes wrong')
+      setMessage('something went wrong, please try again')
     }
    } catch (error) {
     console.log(error)
+    setMessage('something went wrong, please try again')
    }
 
   } 
@@ -48,7 +47,7 @@ function UserLogin() {
               <Col className="d-flex justify-content-center" md={6} lg={6} sm={12} xs={12}>
                 <Form onSubmit={handleSubmit} className="onboardForm">
                     <h4 className="section-title-login"> LOGIN </h4>
-                    
+                    <p>{message}</p>
                     <input onChange={e => setEmail(e.target.value)} className="form-control m-2" type="email" placeholder="Enter Your Email Address" />
 
                     <input onChange={e => setPassword(e.target.value)}className="form-control m-2" type="password" placeholder="Enter Your Password" />
