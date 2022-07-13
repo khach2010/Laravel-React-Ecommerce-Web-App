@@ -1,9 +1,43 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Container,Row,Col, Form,Button } from 'react-bootstrap'
 import Login from '../../assets/images/login.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import AppURL from '../../api/AppURL';
+import axios from 'axios'
 
 function Register() {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [password_confirmation, setPassword_confirmation] = useState('')
+  const [message, setMessage] = useState('')
+
+  let navigate = useNavigate();
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const formData = {name, email, password, password_confirmation}
+  
+   try {
+    const response = await axios.post(AppURL.Register, formData)
+    if(response.status === 200) {
+      console.log(response.data)
+      const {id, name, email} = response.data.user
+      localStorage.setItem('token',response.data.token);
+
+      navigate("/profile", {state: {id, name, email, msg: 'successfully Register'}});
+
+    } else {
+      setMessage('something went wrong, please try again')
+    }
+   } catch (error) {
+    console.log(error)
+    setMessage('something went wrong, please try again')
+   }
+
+  } 
+
+
   return (
     <>
     <Container>
@@ -13,23 +47,18 @@ function Register() {
             <Row className="text-center">
 
               <Col className="d-flex justify-content-center" md={6} lg={6} sm={12} xs={12}>
-                <Form className="onboardForm">
-                    <h4 className="section-title-login"> USER REGISTER  </h4>
-                  
-                    <input className="form-control m-2" type="text" placeholder="Enter Your Name" />
+                <Form onSubmit={handleSubmit} className="onboardForm">
+                    <h4 className="section-title-login"> REGISTER </h4>
+                    <p>{message}</p>
+                    <input onChange={e => setName(e.target.value)} className="form-control m-2" type="text" placeholder="Your Name" />
+                    <input onChange={e => setEmail(e.target.value)} className="form-control m-2" type="email" placeholder="Email Address" />
 
-                    <input className="form-control m-2" type="email" placeholder="Enter Your Email Address" />
+                    <input onChange={e => setPassword(e.target.value)}className="form-control m-2" type="password" placeholder="Password" />
+                    <input onChange={e => setPassword_confirmation(e.target.value)}className="form-control m-2" type="password" placeholder="Password Confirmation" />
 
-                    <input className="form-control m-2" type="password" placeholder="Enter Your Password" />
 
-                    <input className="form-control m-2" type="password" placeholder="Enter Your Password Confirmation" />
+                    <Button type='submit' className="btn btn-block m-2 site-btn-login"> Register </Button>
 
-                    <Button type="submit" className="btn btn-block m-2 site-btn-login"> REGISTER </Button>
-                    <br></br> 
-                    <br></br> 
-                    <p> <b> Forget My Password? </b><Link to="/forget"><b> Froget Password </b> </Link> </p>
-
-                    <p> <b> Already Have An Account ? </b><Link to="/login"><b> Login </b> </Link> </p>
                 </Form>
               </Col>
 
@@ -39,7 +68,7 @@ function Register() {
             </Row>
 
           </Col>
-         </Row>
+          </Row>
     </Container>
     </>
   )
