@@ -24,6 +24,48 @@ function NavMenuDesktop() {
     }
   } 
 
+  let displayButtons
+  if(localStorage.getItem('token')){
+    displayButtons = <Col className="p-1 mt-1" lg={4} md={4} sm={12} xs={12}>
+      <Link to="/favourite" className="btn">
+        <FontAwesomeIcon icon={faHeart} />
+        <sup><span className="badge text-white bg-danger">2</span></sup>                  
+      </Link>
+      <Link to="/notification" className="btn">
+        <FontAwesomeIcon icon={faBell} />
+        <sup><span className="badge text-white bg-danger">5</span></sup>                  
+      </Link>
+      <Link to='/' className="btn">
+        <FontAwesomeIcon icon={faMobileAlt} />
+        </Link>
+        <Link to="/profile" className="h4 btn">PROFILE</Link>
+        <Link to="/register" className="h4 btn">LOGOUT</Link>
+
+      <Link to="/cart" className="cart-btn">
+        <FontAwesomeIcon icon={faShoppingBag} className='faShoppingBag'/>
+        3 Items </Link>
+    </Col>
+  } else {
+    displayButtons = <Col className="p-1 mt-1" lg={4} md={4} sm={12} xs={12}>
+      <Link to="/favourite" className="btn">
+        <FontAwesomeIcon icon={faHeart} />
+        <sup><span className="badge text-white bg-danger">2</span></sup>                  
+      </Link>
+      <Link to="/notification" className="btn">
+        <FontAwesomeIcon icon={faBell} />
+        <sup><span className="badge text-white bg-danger">5</span></sup>                  
+      </Link>
+      <Link to='/' className="btn">
+        <FontAwesomeIcon icon={faMobileAlt} />
+        </Link>
+        <Link to="/login" className="h4 btn">LOGIN</Link>
+        <Link to="/register" className="h4 btn">REGISTER</Link>
+
+      <Link to="/cart" className="cart-btn">
+        <FontAwesomeIcon icon={faShoppingBag} className='faShoppingBag'/>
+        3 Items </Link>
+    </Col>
+  }
 
 
     return (
@@ -50,26 +92,9 @@ function NavMenuDesktop() {
                         
                           </div>
                       </Col>
-
-                      <Col className="p-1 mt-1" lg={4} md={4} sm={12} xs={12}>
-                        <Link to="/favourite" className="btn">
-                          <FontAwesomeIcon icon={faHeart} />
-                          <sup><span className="badge text-white bg-danger">2</span></sup>                  
-                        </Link>
-                        <Link to="/notification" className="btn">
-                          <FontAwesomeIcon icon={faBell} />
-                          <sup><span className="badge text-white bg-danger">5</span></sup>                  
-                        </Link>
-                        <Link to='/' className="btn">
-                          <FontAwesomeIcon icon={faMobileAlt} />
-                          </Link>
-                        <Link to="/login" className="btn">LOGIN</Link>
-                        <Link to="/register" className="btn"></Link>
-
-                        <Link to="/cart" className="cart-btn">
-                          <FontAwesomeIcon icon={faShoppingBag} className='faShoppingBag'/>
-                          3 Items </Link>
-                    </Col>
+                      {/* buttons condition */}
+                      {displayButtons}
+                      {/* end buttons condition */}
 
                 </Row>
 
