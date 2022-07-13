@@ -23,6 +23,9 @@ function NavMenuDesktop() {
       navigate('/productbysearch/'+searchKey, { replace: true });
     }
   } 
+  const logoutUser = () => {
+    localStorage.clear()
+  }
 
   let displayButtons
   if(localStorage.getItem('token')){
@@ -39,7 +42,7 @@ function NavMenuDesktop() {
         <FontAwesomeIcon icon={faMobileAlt} />
         </Link>
         <Link to="/profile" className="h4 btn">PROFILE</Link>
-        <Link to="/register" className="h4 btn">LOGOUT</Link>
+        <Link to="/" onClick={logoutUser} className="h4 btn">LOGOUT</Link>
 
       <Link to="/cart" className="cart-btn">
         <FontAwesomeIcon icon={faShoppingBag} className='faShoppingBag'/>
