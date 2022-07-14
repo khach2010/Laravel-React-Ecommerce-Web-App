@@ -19,6 +19,7 @@ class AppURL {
   static Login = this.BaseURL+"/login"
   static Register = this.BaseURL+"/register"
   static ForgetPassword = this.BaseURL+"/forgetpassword"
+  static ResetPassword = this.BaseURL+"/resetpassword"
   static UserData = this.BaseURL+"/user"
   
   static NotificationHistory = this.BaseURL+"/notification"
