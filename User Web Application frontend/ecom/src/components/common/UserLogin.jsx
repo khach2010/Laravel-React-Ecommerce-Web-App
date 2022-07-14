@@ -11,6 +11,9 @@ function UserLogin() {
   const [message, setMessage] = useState('')
 
   let navigate = useNavigate();
+  if(localStorage.getItem('token')){
+    navigate("/profile");
+}
   
   const handleSubmit = async (e) => {
     e.preventDefault()

@@ -23,6 +23,7 @@ import ProfilePage from './pages/ProfilePage'
 
 function App() {
   const [userProfile, setUserProfile] = useState('')
+  console.log(userProfile)
 
   async function getUserProfile() {
     try {

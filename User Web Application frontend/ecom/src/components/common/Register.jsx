@@ -13,7 +13,10 @@ function Register() {
   const [message, setMessage] = useState('')
 
   let navigate = useNavigate();
-  
+  if(localStorage.getItem('token')){
+    navigate("/profile");
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     const formData = {name, email, password, password_confirmation}
@@ -30,6 +33,7 @@ function Register() {
     } else {
       setMessage('something went wrong, please try again')
     }
+
    } catch (error) {
     console.log(error)
     setMessage('something went wrong, please try again')
