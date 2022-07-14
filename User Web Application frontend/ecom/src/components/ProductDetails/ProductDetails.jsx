@@ -3,6 +3,7 @@ import { Container,Row,Col, Form,Button } from 'react-bootstrap'
 import ReactDOM from 'react-dom'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import { Link } from 'react-router-dom'
+import SuggestedProduct from './SuggestedProduct'
 
 function ProductDetails({dataDetails, dataList}) {
   
@@ -152,7 +153,8 @@ function ProductDetails({dataDetails, dataList}) {
  </Col>
 
                     </Row>
-                </Container>
+                    <SuggestedProduct sub={subcategory}  />
+                    </Container>
                )
           }
      }

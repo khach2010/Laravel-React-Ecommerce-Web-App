@@ -13,7 +13,7 @@ function UserLogin() {
   let navigate = useNavigate();
   if(localStorage.getItem('token')){
     navigate("/profile");
-}
+  }
   
   const handleSubmit = async (e) => {
     e.preventDefault()

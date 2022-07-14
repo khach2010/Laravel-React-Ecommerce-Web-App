@@ -29,7 +29,10 @@ class AppURL {
   }
   static ProductBySearch(searchkey){
     return this.BaseURL+"/search/"+searchkey;
-}
+  }
+  static SimilarProduct(subcategory){
+    return this.BaseURL+"/similar/"+subcategory;
+  }
    
 }
 
