@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Admin\VisitorController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\SiteInfoController;
@@ -10,6 +11,9 @@ use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\ProductDetailsController;
 use App\Http\Controllers\Admin\NotificationController;
+use App\Http\Controllers\Admin\ReviewController;
+
+
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ForgetController;
 use App\Http\Controllers\User\ResetController;
@@ -31,11 +35,6 @@ Route::post('/resetpassword', [ResetController::class, 'ResetPassword']);
 
 Route::get('/user', [UserController::class, 'User'])->middleware('auth:api');
 // ///////// End User Api login ////////////
-
-
-
-
-
 
 // Get Visitor
 Route::get('/getvisitor', [VisitorController::class, 'GetVisitorDetails']);
@@ -61,3 +60,5 @@ Route::get('/notification', [NotificationController::class, 'NotificationHistory
 Route::get('/search/{key}', [ProductListController::class, 'ProductBySearch']);
 // suggested product route
 Route::get('/similar/{subcategory}', [ProductListController::class, 'SimilarProduct']);
+// product review route
+Route::get('/reviewlist/{id}', [ReviewController::class, 'ReviewList']);

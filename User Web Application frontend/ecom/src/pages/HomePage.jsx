@@ -14,13 +14,8 @@ import AppURL from '../api/AppURL'
 
 function HomePage() {
   
-  const GetVisitorDetails = () => {
-    axios.get(AppURL.VisitorDetails).then().catch()
-  }
-
   useEffect(() => {
     window.scroll(0,0)
-    GetVisitorDetails()
   }, [])
 
   

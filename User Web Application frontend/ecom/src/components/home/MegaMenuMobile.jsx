@@ -20,7 +20,7 @@ function MegaMenuMobile() {
     const {category_name, category_image, subcategory_name} = cat
       return <div key={category_name+i} >
                   <button onClick={MenuItemClick} className="accordionMobile">
-                    <img className="accordionMenuIconMobile" src={category_image} />&nbsp; {category_name}
+                    <img alt={category_name} className="accordionMenuIconMobile" src={category_image} />&nbsp; {category_name}
                   </button>
                   <div className="panelMobile">
                     <ul>

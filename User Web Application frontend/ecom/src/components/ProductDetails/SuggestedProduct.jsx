@@ -6,21 +6,39 @@ import axios from 'axios'
 
 function SuggestedProduct({sub}) {
      const [productSubCategoryData, setProductSubCategoryData] = useState([])
-
+     console.log(productSubCategoryData)
      const myView = productSubCategoryData.map((product) => {
-          const {brand,category,price,title,image, id } = product
-          return   <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                    <Link to={`/productdetails/${id}`}>
+          const {brand,category,price,title,image, id, special_price } = product
+          
+          if(special_price=="na") {
+               return (
+                    <Col key={title+id} className="p-1" xl={2} lg={2} md={2} sm={4} xs={6}>
+                         <Link to={'/productdetails/'+id}>
+                              <Card className="image-box card">
+                                   <img className="center" src={image} alt={title}/>   
+                                   <Card.Body> 
+                                   <p className="product-name-on-card">{title}</p>
+                                   <p className="product-price-on-card">Price : ${price}</p>
+                                   </Card.Body>
+                              </Card>
+                         </Link>
+                    </Col>
+               )
+          } else {
+               return (
+                    <Col key={title+id} className="p-1" xl={2} lg={2} md={2} sm={4} xs={6}>
+                   <Link to={'/productdetails/'+id}>
                          <Card className="image-box card">
                               <img className="center" src={image} alt={title}/>   
                               <Card.Body> 
                               <p className="product-name-on-card">{title}</p>
-                              <p className="product-price-on-card">Price : ${price}</p>
-
+                              <p className="product-price-on-card">Price : <strike className="text-secondary">${price}</strike> ${special_price}</p>
                               </Card.Body>
                          </Card>
                     </Link>
                </Col>
+               )    
+          }
      })
 
      async function getProductSubCategoryData() {
