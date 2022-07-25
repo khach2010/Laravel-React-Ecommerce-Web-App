@@ -6,7 +6,7 @@ import axios from 'axios'
 
 function SuggestedProduct({sub}) {
      const [productSubCategoryData, setProductSubCategoryData] = useState([])
-     console.log(productSubCategoryData)
+    
      const myView = productSubCategoryData.map((product) => {
           const {brand,category,price,title,image, id, special_price } = product
           
