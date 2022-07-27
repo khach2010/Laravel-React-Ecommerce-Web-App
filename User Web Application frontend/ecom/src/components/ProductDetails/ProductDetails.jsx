@@ -5,17 +5,21 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import { Link } from 'react-router-dom'
 import SuggestedProduct from './SuggestedProduct'
 import ReviewList from './ReviewList'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ProductDetails({dataDetails, dataList}) {
      const[previewImg, setPreviewImg] = useState("0")
-     const [size, setSize] = useState('')
-     const [color, setColor] = useState('')
-     const [quantity, setQuantity] = useState('')
+     const [sizeCart, setSizeCart] = useState('')
+     const [colorCart, setColorCart] = useState('')
+     const [quantityCart, setQuantityCart] = useState('')
      const [productCode, setProductCode] = useState(null)
      const [isSize, setIsSize] = useState(null)
      const [isColor, setIsColor] = useState(null)
 
+
      const myView = chooseDataView (dataDetails, dataList)
+     
 
      function chooseDataView(details, list){
           if(details.length === 0) {
@@ -49,7 +53,6 @@ function ProductDetails({dataDetails, dataList}) {
                          setIsSize('NO')
                     }
                }
-
                if(isColor === null) {
                     if(color !== 'na') {
                          setIsColor('YES')
@@ -57,13 +60,26 @@ function ProductDetails({dataDetails, dataList}) {
                          setIsColor('NO')
                     }
                }
-          
                if(productCode === null) {
                     setProductCode(product_code)
                }
+
+            
+              
      
                function AddToCart() {
-                    alert('adding..')
+                    if(isColor==="YES" && colorCart.length===0){
+                         toast.error("Error Notification Color!");
+                    }
+                    else if(isSize==="YES" && sizeCart.length===0){
+                         toast.error("Error Notification Size!");
+                    } 
+                    else if(quantityCart.length===0){
+                         toast.error("Error Notification Quantity!");
+                    } else {
+                         toast.success("success !");
+                    }
+                    
                }
 
               
@@ -126,7 +142,7 @@ function ProductDetails({dataDetails, dataList}) {
           <div className=''>
                <h6 className="mt-2"> Choose Color: <span>{color}</span></h6>
              
-               <select onChange={(e) => setColor(e.target.value)} className="form-control form-select">
+               <select onChange={(e) => setColorCart(e.target.value)} className="form-control form-select">
                     
                     <option >Choose Color</option>
                     {color.split(',').map((c,i) => (
@@ -136,7 +152,7 @@ function ProductDetails({dataDetails, dataList}) {
           </div>
           <div className=''>
                <h6 className="mt-2"> Choose Size: <span>{size}</span></h6>
-               <select onChange={(e) => setSize(e.target.value)}className="form-control form-select">
+               <select onChange={(e) => setSizeCart(e.target.value)}className="form-control form-select">
                     
                     <option >Choose Size</option>
                     {size.split(',').map((s,i) => (
@@ -147,7 +163,7 @@ function ProductDetails({dataDetails, dataList}) {
      
           <div className="" >
                <h6 className="mt-2"> Choose Quantity  </h6>
-               <select onChange={(e) => setQuantity(e.target.value)} className="form-control form-select">
+               <select onChange={(e) => setQuantityCart(e.target.value)} className="form-control form-select">
                     
                     <option>Choose Quantity</option>
                     <option value="01">01</option>
@@ -164,6 +180,7 @@ function ProductDetails({dataDetails, dataList}) {
           </div>
 
            <div className="input-group mt-3">
+                <ToastContainer position="top-right" autoClose={3000} />
                 <button onClick={AddToCart} className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i>  Add To Cart</button>
                 <button className="btn btn-primary m-1"> <i className="fa fa-car"></i> Order Now</button>
                 <button className="btn btn-primary m-1"> <i className="fa fa-heart"></i> Favourite</button>
