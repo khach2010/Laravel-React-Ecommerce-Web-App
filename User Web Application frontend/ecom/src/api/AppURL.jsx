@@ -37,6 +37,7 @@ class AppURL {
     return this.BaseURL+"/reviewlist/"+id;
   }
    
+  static addToCart = this.BaseURL+"/addtocart"
 }
 
 export default AppURL

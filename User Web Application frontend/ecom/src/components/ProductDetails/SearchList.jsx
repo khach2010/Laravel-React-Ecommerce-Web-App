@@ -7,12 +7,12 @@ function SearchList({ searchData,searchKey}) {
 
   const myView = searchData.map((product, i) => {
     const {title, price, image, special_price, id} =  product
-    if(special_price=="na") {
+    if(special_price==="na") {
       return (
         <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
           <Link to={"/productdetails/"+id} >
             <Card className="image-box card w-100">
-            <img className="center w-75" src={image} />   
+            <img alt='' className="center w-75" src={image} />   
             <Card.Body> 
             <p className="product-name-on-card">{title}</p>
             <p className="product-price-on-card">Price : ${price}</p>
@@ -26,7 +26,7 @@ function SearchList({ searchData,searchKey}) {
           <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
             <Link to={"/productdetails/"+id} >
               <Card className="image-box card w-100">
-              <img className="center w-75" src={image} />   
+              <img alt='' className="center w-75" src={image} />   
               <Card.Body> 
               <p className="product-name-on-card">{title}</p>
               <p className="product-price-on-card">Price : <strike className="text-secondary">${price}</strike> ${special_price}</p>

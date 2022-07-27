@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 class validation {
   static NameRegx = /^[A-Za-z\'\s\.\:\-]+$/;
 }
