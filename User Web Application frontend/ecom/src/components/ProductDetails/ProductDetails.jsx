@@ -5,10 +5,13 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import { Link } from 'react-router-dom'
 import SuggestedProduct from './SuggestedProduct'
 import ReviewList from './ReviewList'
+import AppURL from '../../api/AppURL'
+import axios from 'axios'
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function ProductDetails({dataDetails, dataList}) {
+function ProductDetails({dataDetails, dataList, user}) {
      const[previewImg, setPreviewImg] = useState("0")
      const [sizeCart, setSizeCart] = useState('')
      const [colorCart, setColorCart] = useState('')
@@ -16,7 +19,7 @@ function ProductDetails({dataDetails, dataList}) {
      const [productCode, setProductCode] = useState(null)
      const [isSize, setIsSize] = useState(null)
      const [isColor, setIsColor] = useState(null)
-
+     const [cartAdded, setCartAdded] = useState(false)
 
      const myView = chooseDataView (dataDetails, dataList)
      
@@ -76,9 +79,27 @@ function ProductDetails({dataDetails, dataList}) {
                     } 
                     else if(quantityCart.length===0){
                          toast.error("Error Notification Quantity!");
+                    } 
+                    else if (!localStorage.getItem('token')){
+                         toast.error("Please Login First");
                     } else {
-                         toast.success("success !");
-                    }
+                        let formData = {'size': sizeCart, 'color': colorCart,  "quantity": quantityCart,"product_code": productCode, 'email': user.userProfile.email}
+
+                       axios.post(AppURL.addToCart, formData)
+                       .then(res => {
+                         if(res.data === 1) {
+                              toast.success("Data add to cart successfully");
+                              setCartAdded(true)
+                         } else {
+                              toast.error("your request is not successfully add");
+                              setCartAdded(false)
+                         }
+                       })
+                       .catch(err => {
+                         toast.error(err.message);
+                         setCartAdded(false)
+                       })
+                    } 
                     
                }
 

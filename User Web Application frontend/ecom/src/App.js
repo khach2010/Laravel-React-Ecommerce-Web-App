@@ -57,7 +57,7 @@ function App() {
       <Route
         exact
         path="/productdetails/:code"
-        element={<ProductDetailsPage />}
+        element={<ProductDetailsPage userProfile={userProfile} />}
       />
       <Route path="/notification" element={<NotificationPage />} />
       <Route exact path="/favourite" element={<FavouritePage />} />

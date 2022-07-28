@@ -8,7 +8,7 @@ import AppURL from '../api/AppURL'
 import axios from 'axios'
 import { useParams } from 'react-router-dom';
 
-function ProductDetailsPage() {
+function ProductDetailsPage(userProfile) {
   const [productDataDetails, setProductDataDetails] = useState([])
   const [productDataList, setProductDataList] = useState([])
    const {code} = useParams()
@@ -38,7 +38,7 @@ function ProductDetailsPage() {
                <NavMenuMobile />  
                </div>                       
   
-               <ProductDetails dataDetails={productDataDetails} dataList={productDataList}/> 
+               <ProductDetails user={userProfile} dataDetails={productDataDetails} dataList={productDataList}/> 
 
                <div className="Desktop">
                <FooterDesktop/>
