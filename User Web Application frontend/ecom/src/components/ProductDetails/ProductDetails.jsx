@@ -126,7 +126,7 @@ function ProductDetails({dataDetails, dataList, user, setCartCount}) {
                     let email = user.userProfile.email
                     setFavStatus('Adding...')
                    
-                    axios.post(AppURL.AddToFavourite(product_code, email))
+                    axios.get(AppURL.AddToFavourite(product_code, email))
                     .then(res => {
                          if(res.data === 1) {
                               toast.success("Product is added to Favourite");
