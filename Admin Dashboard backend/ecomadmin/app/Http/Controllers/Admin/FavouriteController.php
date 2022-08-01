@@ -20,6 +20,8 @@ class FavouriteController extends Controller
             'image' => $productDetails[0]['image'],
             'product_code' => $product_code,
             'email' => $email,
-        ])
+        ]);
+
+        return $result;
     }
 }

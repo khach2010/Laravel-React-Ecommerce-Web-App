@@ -20,6 +20,7 @@ function ProductDetails({dataDetails, dataList, user, setCartCount}) {
      const [isSize, setIsSize] = useState(null)
      const [isColor, setIsColor] = useState(null)
      const [cartAdded, setCartAdded] = useState(false)
+     const [favStatus, setFavStatus] = useState('Favourite')
 
      const myView = chooseDataView (dataDetails, dataList)
 
@@ -120,6 +121,26 @@ function ProductDetails({dataDetails, dataList, user, setCartCount}) {
                      
                     }
                }
+
+               function AddToFav() {     
+                    let email = user.userProfile.email
+                    setFavStatus('Adding...')
+                   
+                    axios.post(AppURL.AddToFavourite(product_code, email))
+                    .then(res => {
+                         if(res.data === 1) {
+                              toast.success("Product is added to Favourite");
+                              setFavStatus('Favourite')
+                         } else {
+                              toast.error("your request is not successfully add, Try again");
+                              setFavStatus('Favourite')
+                         }
+                    })
+                    .catch(err => console.log(err))
+                         
+               }
+
+            
               
 
                return (
@@ -221,7 +242,7 @@ function ProductDetails({dataDetails, dataList, user, setCartCount}) {
                 <ToastContainer position="top-right" autoClose={3000} />
                 <button onClick={AddToCart} className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i>  Add To Cart</button>
                 <button className="btn btn-primary m-1"> <i className="fa fa-car"></i> Order Now</button>
-                <button className="btn btn-primary m-1"> <i className="fa fa-heart"></i> Favourite</button>
+                <button onClick={AddToFav} className="btn btn-primary m-1"> <i className="fa fa-heart"></i>{favStatus}</button>
            </div>
            </Col>
       </Row>
