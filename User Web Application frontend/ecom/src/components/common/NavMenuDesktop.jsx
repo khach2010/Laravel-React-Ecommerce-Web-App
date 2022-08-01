@@ -6,7 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faMobileAlt, faSearch, faShoppingBag, faHeart, faBars } from '@fortawesome/free-solid-svg-icons'
 import MegaMenuMobile from '../home/MegaMenuMobile';
 
-function NavMenuDesktop({cartCount}) {
+function NavMenuDesktop({cartCount, favCount}) {
+  console.log(favCount)
  
   let navigate = useNavigate(); 
 

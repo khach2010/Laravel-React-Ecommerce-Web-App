@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom'
 import AppURL from '../../api/AppURL'
 import axios from 'axios'
 
-function Favourite({userEmail}) {
+function Favourite({userEmail, setFavCount}) {
   const [favListData, setFavListData] = useState([])
+
   const myView = favListData.map((fav) => {
     const {id, product_name, image, product_code} = fav
+
     return  <Col key={id+product_code} className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
     <Link to={`/productdetails/${id}`} >
       <Card className="image-box card">
@@ -25,6 +27,7 @@ function Favourite({userEmail}) {
     try {
       const response = await axios.get(AppURL.FavouriteList(userEmail))
       setFavListData(response.data)
+      setFavCount(response.data.length)
     } catch (error) {
       console.log(error)
     }
