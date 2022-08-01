@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ProductDetailsController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\ProductCartCOntroller;
+use App\Http\Controllers\Admin\FavouriteController;
 
 
 use App\Http\Controllers\User\AuthController;
@@ -68,3 +69,5 @@ Route::get('/reviewlist/{id}', [ReviewController::class, 'ReviewList']);
 Route::post('/addtocart', [ProductCartCOntroller::class, 'AddToCart']);
 // product cart route
 Route::get('/cartcount/{product_code}', [ProductCartCOntroller::class, 'CartCount']);
+// Favourite Route
+Route::get('/favourite/{product_code}/{email}',[FavouriteController::class, 'AddFavourite']);
