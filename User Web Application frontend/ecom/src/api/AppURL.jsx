@@ -37,7 +37,11 @@ class AppURL {
     return this.BaseURL+"/reviewlist/"+id;
   }
    
-  static addToCart = this.BaseURL+"/addtocart"
+  static addToCart = this.BaseURL+"/addtocart";
+
+  static CartCount(product_code){
+    return this.BaseURL+"/cartcount/"+product_code;
+  }
 }
 
 export default AppURL

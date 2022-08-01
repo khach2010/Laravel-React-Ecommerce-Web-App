@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {Navbar,Container, Row, Col, Button} from 'react-bootstrap';
 import Logo from '../../assets/images/easyshop.png';
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faMobileAlt, faSearch, faShoppingBag, faHeart, faBars } from '@fortawesome/free-solid-svg-icons'
 import MegaMenuMobile from '../home/MegaMenuMobile';
+import axios from 'axios';
+import AppURL from '../../api/AppURL';
 
-function NavMenuDesktop() {
-  let navigate = useNavigate();
+function NavMenuDesktop({cartCount}) {
+ 
+  let navigate = useNavigate(); 
 
   const [sideNav, setSideNav] = useState(false)
   const [searchKey, setSearchKey] = useState('')
@@ -27,6 +30,7 @@ function NavMenuDesktop() {
 
   let displayButtons
   if(localStorage.getItem('token')){
+
     displayButtons = <Col className="p-1 mt-1" lg={4} md={4} sm={12} xs={12}>
       <Link to="/favourite" className="btn">
         <FontAwesomeIcon icon={faHeart} />
@@ -44,9 +48,10 @@ function NavMenuDesktop() {
 
       <Link to="/cart" className="cart-btn">
         <FontAwesomeIcon icon={faShoppingBag} className='faShoppingBag'/>
-        3 Items </Link>
+        {localStorage.getItem('cartCount') ? localStorage.getItem('cartCount') : cartCount} Items </Link>
     </Col>
   } else {
+
     displayButtons = <Col className="p-1 mt-1" lg={4} md={4} sm={12} xs={12}>
       <Link to="/favourite" className="btn">
         <FontAwesomeIcon icon={faHeart} />
@@ -64,9 +69,11 @@ function NavMenuDesktop() {
 
       <Link to="/cart" className="cart-btn">
         <FontAwesomeIcon icon={faShoppingBag} className='faShoppingBag'/>
-        3 Items </Link>
+        0 Items </Link>
     </Col>
   }
+
+  
 
 
     return (

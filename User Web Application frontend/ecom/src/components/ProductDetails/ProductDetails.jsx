@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Container,Row,Col } from 'react-bootstrap'
 import ReactDOM from 'react-dom'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import SuggestedProduct from './SuggestedProduct'
 import ReviewList from './ReviewList'
 import AppURL from '../../api/AppURL'
@@ -11,7 +11,7 @@ import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function ProductDetails({dataDetails, dataList, user}) {
+function ProductDetails({dataDetails, dataList, user, setCartCount}) {
      const[previewImg, setPreviewImg] = useState("0")
      const [sizeCart, setSizeCart] = useState('')
      const [colorCart, setColorCart] = useState('')
@@ -22,6 +22,8 @@ function ProductDetails({dataDetails, dataList, user}) {
      const [cartAdded, setCartAdded] = useState(false)
 
      const myView = chooseDataView (dataDetails, dataList)
+
+     let navigate = useNavigate();
      
 
      function chooseDataView(details, list){
@@ -88,7 +90,7 @@ function ProductDetails({dataDetails, dataList, user}) {
                        axios.post(AppURL.addToCart, formData)
                        .then(res => {
                          if(res.data === 1) {
-                              toast.success("Data add to cart successfully");
+                              toast.success("Product is added to cart");
                               setCartAdded(true)
                          } else {
                               toast.error("your request is not successfully add");
@@ -103,6 +105,21 @@ function ProductDetails({dataDetails, dataList, user}) {
                     
                }
 
+               function pageRefresh() {
+                    
+                    if(cartAdded===true) {
+                         try {
+                              axios.get(AppURL.CartCount(dataList[0].product_code)).then(res => {
+                                   setCartCount(res.data)
+                                   localStorage.setItem('cartCount', res.data)
+                                   setCartAdded(false)
+                              })
+                         } catch (error) {
+                              console.log(error)
+                         }
+                     
+                    }
+               }
               
 
                return (
@@ -221,6 +238,7 @@ function ProductDetails({dataDetails, dataList, user}) {
                     </Row>
                    
                     <SuggestedProduct sub={subcategory}  />
+                    {pageRefresh()}
                     </Container>
                )
           }

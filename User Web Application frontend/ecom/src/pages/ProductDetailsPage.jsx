@@ -11,6 +11,7 @@ import { useParams } from 'react-router-dom';
 function ProductDetailsPage(userProfile) {
   const [productDataDetails, setProductDataDetails] = useState([])
   const [productDataList, setProductDataList] = useState([])
+  const [cartCount, setCartCount] = useState('')
    const {code} = useParams()
    
    async function getProductData() {
@@ -23,6 +24,7 @@ function ProductDetailsPage(userProfile) {
      }
    }
 
+
      useEffect(() => {
           window.scroll(0,0)
           getProductData()
@@ -31,14 +33,14 @@ function ProductDetailsPage(userProfile) {
           return (
                <> 
                <div className="Desktop">
-                <NavMenuDesktop /> 
+                <NavMenuDesktop cartCount={cartCount} /> 
                </div>
 
                <div className="Mobile">
                <NavMenuMobile />  
                </div>                       
   
-               <ProductDetails user={userProfile} dataDetails={productDataDetails} dataList={productDataList}/> 
+               <ProductDetails setCartCount={setCartCount} user={userProfile} dataDetails={productDataDetails} dataList={productDataList}/> 
 
                <div className="Desktop">
                <FooterDesktop/>
