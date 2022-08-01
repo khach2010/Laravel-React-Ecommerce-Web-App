@@ -5,11 +5,8 @@ import NavMenuDesktop from '../components/common/NavMenuDesktop'
 import NavMenuMobile from '../components/common/NavMenuMobile'
 import Favourite from '../components/Favourite/Favourite'
 
-class FavouritePage extends Component {
-  componentDidMount(){
-    window.scroll(0,0)
-}
-  render() {
+function FavouritePage({userProfile}) {
+
     return (
       <>
       <div className="Desktop">
@@ -20,7 +17,7 @@ class FavouritePage extends Component {
         <NavMenuMobile />  
       </div>      
     
-          <Favourite />
+          <Favourite userEmail={userProfile.email} />
 
       <div className="Desktop">
         <FooterDesktop/>
@@ -32,7 +29,6 @@ class FavouritePage extends Component {
       
     </>
     )
-  }
 }
 
 export default FavouritePage

@@ -1,10 +1,39 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Container, Row, Col, Card, Button} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import AppURL from '../../api/AppURL'
+import axios from 'axios'
 
+function Favourite({userEmail}) {
+  const [favListData, setFavListData] = useState([])
+  const myView = favListData.map((fav) => {
+    const {id, product_name, image, product_code} = fav
+    return  <Col key={id+product_code} className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
+    <Link to={`/productdetails/${id}`} >
+      <Card className="image-box card">
+        <img alt={product_name+id} className="center" src={image} />   
+        <Card.Body> 
+        <p className="product-name-on-card">{product_name}</p>
+        <Button className="btn btn-sm"> Remove </Button> 
+        </Card.Body>
+        </Card>
+      </Link> 
+  </Col>
+  })
 
-class Favourite extends Component {
-  render() {
+  async function getFavListData() {
+    try {
+      const response = await axios.get(AppURL.FavouriteList(userEmail))
+      setFavListData(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getFavListData()
+  }, []);
+ 
     return (
       <>
       <Container className="text-center center-x" fluid={true}>
@@ -16,51 +45,7 @@ class Favourite extends Component {
         <div className="center-x">
           <Row>
 
-          <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
-            <Link to="/productdetails" >
-              <Card className="image-box card">
-                <img alt='' className="center" src="https://rukminim1.flixcart.com/image/416/416/kn7sdjk0/mobile/q/j/x/c21-rmx3201-realme-original-imagfxfwbszrxkvu.jpeg?q=70" />   
-                <Card.Body> 
-                <p className="product-name-on-card">Realme C21 (Cross Black, 64 GB)</p>
-                <p className="product-price-on-card">Price : $120</p>
-                <Button className="btn btn-sm"> Remove </Button> 
-                </Card.Body>
-                </Card>
-              </Link> 
-          </Col>
-
-          <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
-            <Card className="image-box card">
-              <img alt='' className="center" src="https://rukminim1.flixcart.com/image/416/416/knm2s280/mobile/j/x/c/hot-10-play-x688b-infinix-original-imag29gxqzuxkmnk.jpeg?q=70" />   
-              <Card.Body> 
-              <p className="product-name-on-card">Realme C21 (Cross Blue, 64 GB)</p>
-              <p className="product-price-on-card">Price : $120</p>
-              <Button className="btn btn-sm"> Remove </Button> 
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
-          <Card className="image-box card">
-                <img alt='' className="center" src="https://rukminim1.flixcart.com/image/416/416/kn7sdjk0/mobile/g/r/g/c21-rmx3201-realme-original-imagfxfwn9aryyda.jpeg?q=70" />   
-                <Card.Body> 
-                <p className="product-name-on-card">Realme C21 (Cross Black, 64 GB)</p>
-                <p className="product-price-on-card">Price : $120</p>
-                <Button className="btn btn-sm"> Remove </Button> 
-                </Card.Body>
-                </Card>
-          </Col>
-
-          <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
-          <Card className="image-box card">
-                <img alt='' className="center" src="https://rukminim1.flixcart.com/image/416/416/knm2s280/mobile/v/l/u/hot-10-play-x688b-infinix-original-imag29hfaedkgdfe.jpeg?q=70" />   
-                <Card.Body> 
-                <p className="product-name-on-card">Realme C21 (Cross Black, 64 GB)</p>
-                <p className="product-price-on-card">Price : $120</p>
-                <Button className="btn btn-sm"> Remove </Button> 
-                </Card.Body>
-                </Card>
-          </Col>
+            {myView}         
 
           </Row>
         </div>
@@ -69,7 +54,7 @@ class Favourite extends Component {
       </Container>
       </>
     )
-  }
+  
 }
 
 export default Favourite

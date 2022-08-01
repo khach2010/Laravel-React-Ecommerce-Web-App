@@ -60,7 +60,11 @@ function App() {
         element={<ProductDetailsPage userProfile={userProfile} />}
       />
       <Route path="/notification" element={<NotificationPage />} />
-      <Route exact path="/favourite" element={<FavouritePage />} />
+      <Route
+        exact
+        path="/favourite"
+        element={<FavouritePage userProfile={userProfile} />}
+      />
       <Route exact path="/cart" element={<CartPage />} />
       <Route
         path="/productcategory/:category"
