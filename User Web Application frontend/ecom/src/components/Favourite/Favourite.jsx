@@ -3,20 +3,35 @@ import {Container, Row, Col, Card, Button} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import AppURL from '../../api/AppURL'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 function Favourite({userEmail, setFavCount}) {
   const [favListData, setFavListData] = useState([])
+  const [pageRefreshStatus, setPageRefreshStatus] = useState(false)
 
   const myView = favListData.map((fav) => {
     const {id, product_name, image, product_code} = fav
 
+    const removeFav = (e) => {
+      let prod_code = e.target.getAttribute('data-code');
+      axios.get(AppURL.FavouriteRemove(prod_code,userEmail)).then(response =>{               
+        toast.success("Product Item Favourite Remove");   
+        setPageRefreshStatus(true)
+       
+    }).catch(error=>{
+         toast.error("Your Request is not done ! Try Aagain");
+    });
+    }
+
+  
+
     return  <Col key={id+product_code} className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
-    <Link to={`/productdetails/${id}`} >
+    <Link to={"#"} >
       <Card className="image-box card">
         <img alt={product_name+id} className="center" src={image} />   
         <Card.Body> 
         <p className="product-name-on-card">{product_name}</p>
-        <Button className="btn btn-sm"> Remove </Button> 
+        <Button className="btn btn-sm" onClick={removeFav} data-code={product_code}> Remove </Button> 
         </Card.Body>
         </Card>
       </Link> 
@@ -35,7 +50,7 @@ function Favourite({userEmail, setFavCount}) {
 
   useEffect(() => {
     getFavListData()
-  }, []);
+  }, [pageRefreshStatus]);
  
     return (
       <>
@@ -55,6 +70,7 @@ function Favourite({userEmail, setFavCount}) {
         
 
       </Container>
+     
       </>
     )
   

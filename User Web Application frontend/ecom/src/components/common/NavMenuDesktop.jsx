@@ -7,7 +7,6 @@ import { faBell, faMobileAlt, faSearch, faShoppingBag, faHeart, faBars } from '@
 import MegaMenuMobile from '../home/MegaMenuMobile';
 
 function NavMenuDesktop({cartCount, favCount}) {
-  console.log(favCount)
  
   let navigate = useNavigate(); 
 
