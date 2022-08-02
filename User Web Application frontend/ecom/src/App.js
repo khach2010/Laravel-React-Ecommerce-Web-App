@@ -65,7 +65,11 @@ function App() {
         path="/favourite"
         element={<FavouritePage userProfile={userProfile} />}
       />
-      <Route exact path="/cart" element={<CartPage />} />
+      <Route
+        exact
+        path="/cart"
+        element={<CartPage userProfile={userProfile} />}
+      />
       <Route
         path="/productcategory/:category"
         element={<ProductCategoryPage />}

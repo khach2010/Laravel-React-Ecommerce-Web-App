@@ -38,6 +38,10 @@ class AppURL {
   }
    
   static addToCart = this.BaseURL+"/addtocart";
+  
+  static ShoppingCartReview(email){
+    return this.BaseURL+"/shoppingcartreview/"+email;
+  }
 
   static CartCount(product_code){
     return this.BaseURL+"/cartcount/"+product_code;
