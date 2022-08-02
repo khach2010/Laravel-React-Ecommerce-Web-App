@@ -65,10 +65,15 @@ Route::get('/similar/{subcategory}', [ProductListController::class, 'SimilarProd
 // product review route
 Route::get('/reviewlist/{id}', [ReviewController::class, 'ReviewList']);
 
-// product cart route
+// product cart route - add to cart
 Route::post('/addtocart', [ProductCartCOntroller::class, 'AddToCart']);
+// product cart route - shopping cart review
+Route::get('/shoppingcartreview/{email}', [ProductCartCOntroller::class, 'ShoppingCartReview']);
 // product cart route
 Route::get('/cartcount/{product_code}', [ProductCartCOntroller::class, 'CartCount']);
+
+
+
 // Favourite Route
 Route::get('/favourite/{product_code}/{email}',[FavouriteController::class, 'AddFavourite']);
 Route::get('/favouritelist/{email}',[FavouriteController::class, 'FavouriteList']);

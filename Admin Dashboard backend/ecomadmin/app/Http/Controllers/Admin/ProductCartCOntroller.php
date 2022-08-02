@@ -52,4 +52,11 @@ class ProductCartCOntroller extends Controller
         return $result;
     } // End Method
 
+    public function ShoppingCartReview(Request $request) {
+        $email = $request->email;
+        $result = ProductCart::where('email', $email)->get();
+
+        return $result;
+    }
+
 }
