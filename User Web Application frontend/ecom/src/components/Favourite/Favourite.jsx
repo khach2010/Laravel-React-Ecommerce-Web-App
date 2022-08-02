@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {Container, Row, Col, Card, Button} from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import AppURL from '../../api/AppURL'
 import axios from 'axios'
 import { toast } from 'react-toastify'
@@ -8,6 +8,9 @@ import { toast } from 'react-toastify'
 function Favourite({userEmail, setFavCount}) {
   const [favListData, setFavListData] = useState([])
   const [pageRefreshStatus, setPageRefreshStatus] = useState(false)
+  let navigate = useNavigate();
+
+
 
   const myView = favListData.map((fav) => {
     const {id, product_name, image, product_code} = fav
@@ -22,8 +25,10 @@ function Favourite({userEmail, setFavCount}) {
          toast.error("Your Request is not done ! Try Aagain");
     });
     }
+    if(!localStorage.getItem('token')){
+      return navigate("/login");
+    } 
 
-  
 
     return  <Col key={id+product_code} className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
     <Link to={"#"} >
