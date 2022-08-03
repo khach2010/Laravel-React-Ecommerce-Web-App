@@ -58,5 +58,11 @@ class ProductCartCOntroller extends Controller
 
         return $result;
     }
+    public function ShoppingCartRemove(Request $request) {
+        $id = $request->id;
+        $result = ProductCart::where('id', $id)->delete();
+
+        return $result;
+    }
 
 }
