@@ -21,7 +21,7 @@ function Cart({email}) {
     console.log(totalItemsInCart)
 
   const myView = shoppingList.map((item) => {
-    const {product_name, product_code, image, quantity, total_price, unit_price, color} = item 
+    const {product_name, product_code, image, quantity, total_price, unit_price, color, size} = item 
     return <Col key={product_name} className="p-1" lg={12} md={12} sm={12} xs={12} >
             <Card >                
               <Card.Body>
@@ -32,8 +32,13 @@ function Cart({email}) {
 
                     <Col md={6} lg={6} sm={6} xs={6}>
                     <h5 className="product-name">{product_name}</h5>
+               
+                <h6> Product Code: {product_code} </h6>
+                <h6> {size} </h6>
+                <h6> {color} </h6>
                 <h6> Quantity = {quantity} </h6>
-                <h6>Price = {quantity} x {unit_price} = ${total_price}</h6>
+                <h6> Unit Price = {unit_price} </h6>
+                <h6> Total Price = {quantity} x {unit_price} = ${total_price}</h6>
                     </Col>
 
                     <Col md={3} lg={3} sm={12} xs={12}>
