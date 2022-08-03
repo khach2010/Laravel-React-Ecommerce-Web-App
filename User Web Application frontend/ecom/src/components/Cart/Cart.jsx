@@ -7,6 +7,7 @@ import Product1 from '../../assets/images/product/product1.png'
 function Cart({email}) {
 
   const [shoppingList, setShoppingList] = useState([])
+  const [pageRefesh, setPageRefesh] = useState(false)
 
   const totalPriceCart = shoppingList
     .map(item => Number(item.total_price))
@@ -18,10 +19,24 @@ function Cart({email}) {
   .reduce(function(a,b){
     return a + b
     },0)
-    console.log(totalItemsInCart)
+   
+
+  function RemoveItem(ID) {
+    axios.get(AppURL.ShoppingCartRemove(ID))
+    .then(res => {
+      if(res.data === 1) {
+        setPageRefesh(true)
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      setPageRefesh(false)
+    })
+  }
 
   const myView = shoppingList.map((item) => {
-    const {product_name, product_code, image, quantity, total_price, unit_price, color, size} = item 
+    const {id, product_name, product_code, image, quantity, total_price, unit_price, color, size} = item 
+
     return <Col key={product_name} className="p-1" lg={12} md={12} sm={12} xs={12} >
             <Card >                
               <Card.Body>
@@ -43,7 +58,7 @@ function Cart({email}) {
 
                     <Col md={3} lg={3} sm={12} xs={12}>
                     <input placeholder={quantity} className="form-control text-center" type="number" />
-                    <Button className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-trash-alt"></i> Remove </Button>
+                    <Button onClick={() => RemoveItem(id)} className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-trash-alt"></i> Remove </Button>
 
                     </Col>
                 </Row>              
@@ -56,17 +71,18 @@ function Cart({email}) {
   async function getShoppingList() {
     try {
       const response = await axios.get(AppURL.ShoppingCartReview(email))
-      
       setShoppingList(response.data)
+      setPageRefesh(false)
       
     } catch (error) {
       console.log(error)
+      setPageRefesh(false)
     }
   }
 
   useEffect(() => {
     getShoppingList()
-  }, []);
+  }, [pageRefesh]);
  
     return (
       <>

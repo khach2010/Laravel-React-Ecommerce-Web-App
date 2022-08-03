@@ -36,12 +36,19 @@ class AppURL {
   static ReviewProduct(id){
     return this.BaseURL+"/reviewlist/"+id;
   }
+
    
   static addToCart = this.BaseURL+"/addtocart";
-  
+
   static ShoppingCartReview(email){
     return this.BaseURL+"/shoppingcartreview/"+email;
   }
+  static ShoppingCartRemove(id){
+    return this.BaseURL+"/shoppingcartremove/"+id;
+  }
+
+
+
 
   static CartCount(product_code){
     return this.BaseURL+"/cartcount/"+product_code;
