@@ -26,9 +26,8 @@ function ProductDetailsPage(userProfile) {
 
 
      useEffect(() => {
-          window.scroll(0,0)
           getProductData()
-     }, [])
+     }, [cartCount])
      
           return (
                <> 
@@ -40,7 +39,7 @@ function ProductDetailsPage(userProfile) {
                <NavMenuMobile />  
                </div>                       
   
-               <ProductDetails setCartCount={setCartCount} user={userProfile} dataDetails={productDataDetails} dataList={productDataList}/> 
+               <ProductDetails cartCount={cartCount} setCartCount={setCartCount} user={userProfile} dataDetails={productDataDetails} dataList={productDataList}/> 
 
                <div className="Desktop">
                <FooterDesktop/>

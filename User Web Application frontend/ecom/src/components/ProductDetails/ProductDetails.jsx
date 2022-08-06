@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, use } from 'react'
 import { Container,Row,Col } from 'react-bootstrap'
 import ReactDOM from 'react-dom'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
@@ -12,7 +12,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function ProductDetails({dataDetails, dataList, user, setCartCount}) {
-     const[previewImg, setPreviewImg] = useState("0")
      const [sizeCart, setSizeCart] = useState('')
      const [colorCart, setColorCart] = useState('')
      const [quantityCart, setQuantityCart] = useState('')
@@ -106,8 +105,7 @@ function ProductDetails({dataDetails, dataList, user, setCartCount}) {
                     
                }
 
-               function pageRefresh() {
-                    
+               function pageRefresh() {             
                     if(cartAdded===true) {
                          try {
                               axios.get(AppURL.CartCount(dataList[0].product_code)).then(res => {
@@ -118,7 +116,6 @@ function ProductDetails({dataDetails, dataList, user, setCartCount}) {
                          } catch (error) {
                               console.log(error)
                          }
-                     
                     }
                }
 
