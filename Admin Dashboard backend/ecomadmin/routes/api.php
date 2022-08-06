@@ -72,6 +72,11 @@ Route::get('/shoppingcartreview/{email}', [ProductCartCOntroller::class, 'Shoppi
 Route::get('/shoppingcartremove/{id}', [ProductCartCOntroller::class, 'ShoppingCartRemove']);
 // product cart route
 Route::get('/cartcount/{product_code}', [ProductCartCOntroller::class, 'CartCount']);
+// product cart plus +
+Route::get('/cartitemplus/{id}/{quantity}/{price}', [ProductCartCOntroller::class, 'CartItemPlus']);
+// product cart min -
+Route::get('/cartitempminus/{id}/{quantity}/{price}', [ProductCartCOntroller::class, 'CartItemMinus']);
+
 
 
 
