@@ -46,6 +46,12 @@ class AppURL {
   static ShoppingCartRemove(id){
     return this.BaseURL+"/shoppingcartremove/"+id;
   }
+  static CartItemPlus(id,quatity,price){
+    return this.BaseURL+"/cartitemplus/"+id+"/"+quatity+"/"+price;
+  }
+  static CartItemMinus(id,quatity,price){
+    return this.BaseURL+"/cartitempminus/"+id+"/"+quatity+"/"+price;
+  }
 
 
 
