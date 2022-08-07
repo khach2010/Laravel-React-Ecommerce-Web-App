@@ -84,3 +84,7 @@ Route::get('/cartitempminus/{id}/{quantity}/{price}', [ProductCartCOntroller::cl
 Route::get('/favourite/{product_code}/{email}',[FavouriteController::class, 'AddFavourite']);
 Route::get('/favouritelist/{email}',[FavouriteController::class, 'FavouriteList']);
 Route::get('/favouriteremove/{product_code}/{email}',[FavouriteController::class, 'FavouriteRemove']);
+
+
+// Order Route - Cart Order
+Route::post('/cartorder', [ProductCartCOntroller::class, 'CartOrder']);
