@@ -63,20 +63,20 @@ function Cart({shoppingList, setPageRefesh}) {
     return <Col key={product_name} className="p-1" lg={12} md={12} sm={12} xs={12} >
             <Card >                
               <Card.Body>
+
                 <Row>
                     <Col md={3} lg={3} sm={6} xs={6}>
                           <img alt={product_name} className="cart-product-img" src={image} />
                     </Col>
 
                     <Col md={6} lg={6} sm={6} xs={6}>
-                    <h5 className="product-name">{product_name}</h5>
-               
-                <h6> Product Code: {product_code} </h6>
-                <h6> {size} </h6>
-                <h6> {color} </h6>
-                <h6> Quantity = {quantity} </h6>
-                <h6> Unit Price = {unit_price} </h6>
-                <h6> Total Price = {quantity} x {unit_price} = ${total_price}</h6>
+                      <h5 className="product-name">{product_name}</h5>
+                      <h6> Product Code: {product_code} </h6>
+                      <h6> {size} </h6>
+                      <h6> {color} </h6>
+                      <h6> Quantity = {quantity} </h6>
+                      <h6> Unit Price = {unit_price} </h6>
+                      <h6> Total Price = {quantity} x {unit_price} = ${total_price}</h6>
                     </Col>
 
                     <Col md={3} lg={3} sm={12} xs={12}>
@@ -86,16 +86,14 @@ function Cart({shoppingList, setPageRefesh}) {
                         </Col>
                         <Col> <input placeholder={quantity} className="form-control text-center" type="number" />
                         </Col>
-
                         <Col>
                           <Button onClick={() => MinusItem(id, quantity, unit_price)}> <FontAwesomeIcon icon={faMinus} /> </Button>
                         </Col>
                       </Row>
-                   
                       <Button onClick={() => RemoveItem(id)} className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-trash-alt"></i> Remove </Button>
-
                     </Col>
-                </Row>              
+                </Row>           
+
               </Card.Body>               
             </Card>
           </Col> 
@@ -107,29 +105,74 @@ function Cart({shoppingList, setPageRefesh}) {
     return (
       <>
       <Container>   
+
         <div className="section-title text-center mb-55"><h2>Product Cart List</h2>   
         </div>
+
         <Row>
-         
-       {myView}
-
+          {myView}
         </Row>
+
+        <Row>
+          <Col className="p-1" lg={6} md={6} sm={12} xs={12} >
+            <Card >                
+                <Card.Body>
+                  <Row>
+                      <Col md={4} lg={4} sm={6} xs={6} className="checkout-total-price">
+                      <h3 className=""><i className="fa fa-shopping-cart"></i> Shipping Address & Payment </h3>
+
+                      <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
+                          <label className="form-label">Choose City</label>
+                          <select className="form-control">
+                          <option value="">Choose</option>
+                          <option value="Dhaka">Assam</option>
+                          <option value="Dhaka">Bihar </option>
+                          <option value="Dhaka">Goa </option>
+                          <option value="Dhaka">Gujarat </option>
+                          <option value="Dhaka">Himachal Pradesh </option>
+                          <option value="Dhaka">Punjab  </option>
+                          </select>
+                      </div>
+                      <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
+                          <label className="form-label">Choose Payment Method</label>
+                          <select   className="form-control">
+                          <option value="">Choose</option>
+                          <option value="Cash On Delivery">Cash On Delivery</option>
+                          <option value="Cash On Delivery">Stripe</option>
+                          </select>
+                      </div>
+                      <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
+                          <label className="form-label">Your Name</label>
+                          <input  className="form-control" type="text" placeholder=""/>
+                      </div>
+                      <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
+                          <label className="form-label">Delivery Address</label>
+                          <textarea   rows={2}  className="form-control" type="text" placeholder=""/>
+                      </div>
+                     
+                   
+                      </Col> 
+                  </Row>              
+                </Card.Body>               
+            </Card>
+          </Col> 
+          <Col className="p-1" lg={6} md={6} sm={12} xs={12} >
+            <Card >                
+                <Card.Body>
+                  <Row>
+                      <Col md={4} lg={4} sm={6} xs={6} className="checkout-total-price">
+
+                    <h5> Total Item = {totalItemsInCart} </h5>
+                    <h5>Total Price = ${totalPriceCart}</h5>
+                    <Button className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-shopping-cart"></i> CheckOut </Button>
+                      </Col> 
+                  </Row>              
+                </Card.Body>               
+            </Card>
+          </Col> 
+        </Row>
+
       </Container>
-
-      <Col className="p-1" lg={12} md={12} sm={12} xs={12} >
-          <Card >                
-               <Card.Body>
-                <Row>
-                    <Col md={4} lg={4} sm={6} xs={6} className="checkout-total-price">
-
-                  <h5> Total Item = {totalItemsInCart} </h5>
-                  <h5>Total Price = ${totalPriceCart}</h5>
-                  <Button className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-shopping-cart"></i> CheckOut </Button>
-                    </Col> 
-                </Row>              
-               </Card.Body>               
-          </Card>
-     </Col> 
       </>
     )
   
