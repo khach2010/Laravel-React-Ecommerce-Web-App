@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { ToastContainer, toast } from 'react-toastify';
 
-function Cart({shoppingList, setPageRefesh}) {
+function Cart({shoppingList, setPageRefesh, email}) {
   const [city, setCity] = useState('')
   const [payment, setPayment] = useState('')
   const [name, setName] = useState('')
@@ -16,19 +16,42 @@ function Cart({shoppingList, setPageRefesh}) {
   const confirmOnClick = () => {
     if(city.length===0){
       toast.error("Please Select City");
- }
- else if(payment.length===0){
-      toast.error("Please Select Payment");
- }
- else if(name.length===0){
-      toast.error("Please Select Your Name");
- }
- else if(address.length===0){
-      toast.error("Please Select Your Address");
- }
- else{
+      }
+      else if(payment.length===0){
+            toast.error("Please Select Payment");
+      }
+      else if(name.length===0){
+            toast.error("Please Select Your Name");
+      }
+      else if(address.length===0){
+            toast.error("Please Select Your Address");
+      }
+      else {
 
- }
+        let invoice = new Date().getTime()
+        let FormData = {
+          'city': city,
+          'payment_method': payment,
+          'name': name,
+          'email': email,
+          'delivery_address': address,
+          'delivery_charge': 'delivery_charge - $0',
+          'invoice_no': invoice
+        }
+        
+        axios.post(AppURL.CartOrder, FormData)
+        .then(res => {
+          if(res.data === 1) {
+            toast.success("Your order is already confirmed");
+            setPageRefesh(true)
+          }
+        })
+        .catch(err => {
+          console.log(err)
+          setPageRefesh(false)
+        })
+
+      }
   }
 
   const totalPriceCart = shoppingList

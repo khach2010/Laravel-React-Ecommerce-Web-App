@@ -129,7 +129,7 @@ class ProductCartCOntroller extends Controller
             ]);
 
             if($resultInsert == 1) {
-                $resultDelete = ProductCart::where('id', $CartListItem['id']);
+                $resultDelete = ProductCart::where('id', $CartListItem['id'])->delete();
                 if($resultDelete == 1) {
                     $cartInsertDeleteResult = 1;
                 } else {

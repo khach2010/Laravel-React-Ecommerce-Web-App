@@ -41,7 +41,7 @@ function CartPage({userProfile: {email}}){
         <NavMenuMobile />  
       </div>      
     
-          <Cart shoppingList={shoppingList} setPageRefesh={setPageRefesh}/>
+          <Cart email={email} shoppingList={shoppingList} setPageRefesh={setPageRefesh}/>
 
       <div className="Desktop">
         <FooterDesktop/>
