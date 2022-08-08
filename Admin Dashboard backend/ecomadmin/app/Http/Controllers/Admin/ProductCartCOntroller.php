@@ -107,13 +107,13 @@ class ProductCartCOntroller extends Controller
             $cartInsertDeleteResult = '';
 
             $resultInsert = CartOrder::insert([
-                'city' => $city;
-                'payment_method' => $paymentMethod;
-                'name' => $yourName;
-                'email' => $email;
-                'delivery_address' => $DeliveryAddress;
-                'delivery_charge' => $DeliveryCharge;
-                'invoice_no' => $invoice_no;
+                'city' => $city,
+                'payment_method' => $paymentMethod,
+                'name' => $yourName,
+                'email' => $email,
+                'delivery_address' => $DeliveryAddress,
+                'delivery_charge' => $DeliveryCharge,
+                'invoice_no' => $invoice_no,
 
                 'order_date' => $request_date,
                 'order_time' => $request_time,
@@ -126,7 +126,7 @@ class ProductCartCOntroller extends Controller
                 'quantity' => $CartListItem['quantity'],
                 'unit_price' => $CartListItem['unit_price'],
                 'total_price' => $CartListItem['total_price'],
-            ])
+            ]);
 
             if($resultInsert == 1) {
                 $resultDelete = ProductCart::where('id', $CartListItem['id']);

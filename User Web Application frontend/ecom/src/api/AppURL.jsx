@@ -53,6 +53,7 @@ class AppURL {
     return this.BaseURL+"/cartitempminus/"+id+"/"+quatity+"/"+price;
   }
 
+  static CartOrder = this.BaseURL+"/cartorder"
 
 
 

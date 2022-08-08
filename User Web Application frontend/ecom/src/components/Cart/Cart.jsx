@@ -4,9 +4,32 @@ import {Container, Row, Col,Button,Card} from 'react-bootstrap';
 import AppURL from '../../api/AppURL';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
-
+import { ToastContainer, toast } from 'react-toastify';
 
 function Cart({shoppingList, setPageRefesh}) {
+  const [city, setCity] = useState('')
+  const [payment, setPayment] = useState('')
+  const [name, setName] = useState('')
+  const [address, setAddress] = useState('')
+  const [confirmBtn, setConfirmBtn] = useState('')
+
+  const confirmOnClick = () => {
+    if(city.length===0){
+      toast.error("Please Select City");
+ }
+ else if(payment.length===0){
+      toast.error("Please Select Payment");
+ }
+ else if(name.length===0){
+      toast.error("Please Select Your Name");
+ }
+ else if(address.length===0){
+      toast.error("Please Select Your Address");
+ }
+ else{
+
+ }
+  }
 
   const totalPriceCart = shoppingList
     .map(item => Number(item.total_price))
@@ -60,7 +83,7 @@ function Cart({shoppingList, setPageRefesh}) {
       })
     }
 
-    return <Col key={product_name} className="p-1" lg={12} md={12} sm={12} xs={12} >
+    return <Col key={product_name+id} className="p-1" lg={12} md={12} sm={12} xs={12} >
             <Card >                
               <Card.Body>
 
@@ -101,7 +124,7 @@ function Cart({shoppingList, setPageRefesh}) {
   
 
 
- 
+
     return (
       <>
       <Container>   
@@ -110,6 +133,7 @@ function Cart({shoppingList, setPageRefesh}) {
         </div>
 
         <Row>
+        <ToastContainer position="top-right" autoClose={3000} />
           {myView}
         </Row>
 
@@ -123,31 +147,31 @@ function Cart({shoppingList, setPageRefesh}) {
 
                       <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
                           <label className="form-label">Choose City</label>
-                          <select className="form-control">
+                          <select onChange={(e) => setCity(e.target.value)} className="form-control">
                           <option value="">Choose</option>
-                          <option value="Dhaka">Assam</option>
-                          <option value="Dhaka">Bihar </option>
-                          <option value="Dhaka">Goa </option>
-                          <option value="Dhaka">Gujarat </option>
-                          <option value="Dhaka">Himachal Pradesh </option>
-                          <option value="Dhaka">Punjab  </option>
+                          <option value="Assam">Assam</option>
+                          <option value="Bihar">Bihar </option>
+                          <option value="Goa">Goa </option>
+                          <option value="Gujarat">Gujarat </option>
+                          <option value="Himachal Pradesh">Himachal Pradesh </option>
+                          <option value="Punjab">Punjab  </option>
                           </select>
                       </div>
                       <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
                           <label className="form-label">Choose Payment Method</label>
-                          <select   className="form-control">
+                          <select onChange={(e) => setPayment(e.target.value)}   className="form-control">
                           <option value="">Choose</option>
                           <option value="Cash On Delivery">Cash On Delivery</option>
-                          <option value="Cash On Delivery">Stripe</option>
+                          <option value="Stripe">Stripe</option>
                           </select>
                       </div>
                       <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
                           <label className="form-label">Your Name</label>
-                          <input  className="form-control" type="text" placeholder=""/>
+                          <input onChange={(e) => setName(e.target.value)}  className="form-control" type="text" placeholder=""/>
                       </div>
                       <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
                           <label className="form-label">Delivery Address</label>
-                          <textarea   rows={2}  className="form-control" type="text" placeholder=""/>
+                          <textarea  onChange={(e) => setAddress(e.target.value)}  rows={2}  className="form-control" type="text" placeholder=""/>
                       </div>
                      
                    
@@ -164,7 +188,7 @@ function Cart({shoppingList, setPageRefesh}) {
 
                     <h5> Total Item = {totalItemsInCart} </h5>
                     <h5>Total Price = ${totalPriceCart}</h5>
-                    <Button className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-shopping-cart"></i> CheckOut </Button>
+                    <Button onClick={confirmOnClick}  className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-shopping-cart"></i> CheckOut </Button>
                       </Col> 
                   </Row>              
                 </Card.Body>               
