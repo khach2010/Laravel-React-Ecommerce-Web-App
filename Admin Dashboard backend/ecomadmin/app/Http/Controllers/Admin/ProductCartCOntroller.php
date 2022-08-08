@@ -139,8 +139,14 @@ class ProductCartCOntroller extends Controller
 
             return $cartInsertDeleteResult;
        } // end foreach
-
-
     }
+
+    public function OrderHistory(Request $request) {
+        $email = $request->email;
+        $result = CartOrder::where('email', $email)->orderBy('id', 'DESC')->get();
+
+        return $result;
+    }
+
 
 }
