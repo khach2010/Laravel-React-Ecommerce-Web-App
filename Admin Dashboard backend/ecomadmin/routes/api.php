@@ -88,5 +88,5 @@ Route::get('/favouriteremove/{product_code}/{email}',[FavouriteController::class
 
 // Order Route - Cart Order
 Route::post('/cartorder', [ProductCartCOntroller::class, 'CartOrder']);
-// Order Route - Order History List
+// Order Route - Order History List 1
 Route::get('/orderhistory/{email}', [ProductCartCOntroller::class, 'OrderHistory']);
