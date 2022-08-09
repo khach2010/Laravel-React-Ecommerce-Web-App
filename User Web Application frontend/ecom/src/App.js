@@ -20,6 +20,7 @@ import ResetPasswordPage from './pages/ResetPasswordPage'
 import AppURL from './api/AppURL'
 import axios from 'axios'
 import ProfilePage from './pages/ProfilePage'
+import OrderListPage from './pages/OrderListPage'
 
 function App() {
   const [userProfile, setUserProfile] = useState('')
@@ -64,6 +65,11 @@ function App() {
         exact
         path="/favourite"
         element={<FavouritePage userProfile={userProfile} />}
+      />
+      <Route
+        exact
+        path="/orderhistory"
+        element={<OrderListPage userProfile={userProfile} />}
       />
       <Route
         exact

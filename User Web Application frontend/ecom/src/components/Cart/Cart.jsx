@@ -1,10 +1,12 @@
-import axios from 'axios';
+
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {Container, Row, Col,Button,Card} from 'react-bootstrap';
 import AppURL from '../../api/AppURL';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
 
 function Cart({shoppingList, setPageRefesh, email}) {
   const [city, setCity] = useState('')
@@ -12,6 +14,8 @@ function Cart({shoppingList, setPageRefesh, email}) {
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
   const [confirmBtn, setConfirmBtn] = useState('')
+
+  let navigate = useNavigate();
 
   const confirmOnClick = () => {
     if(city.length===0){

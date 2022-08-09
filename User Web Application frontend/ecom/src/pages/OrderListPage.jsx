@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import Cart from '../components/Cart/Cart'
 import FooterDesktop from '../components/common/FooterDesktop'
 import FooterMobile from '../components/common/FooterMobile'
 import NavMenuDesktop from '../components/common/NavMenuDesktop'
 import NavMenuMobile from '../components/common/NavMenuMobile'
 import AppURL from '../api/AppURL';
 import axios from 'axios'
+import OrderList from '../components/Cart/OrderList'
 
-function CartPage({userProfile: {email}}){
 
-  const [shoppingList, setShoppingList] = useState([])
+function OrderListPage({userProfile: {email}}) {
   const [pageRefesh, setPageRefesh] = useState(false)
+  const [orderListHistory, setOrderListHistory] = useState([])
 
-  async function getShoppingList() {
+  async function getOrderListHistory() {
     try {
-      const response = await axios.get(AppURL.ShoppingCartReview(email))
-      setShoppingList(response.data)
+      const response = await axios.get(AppURL.OrderHistory(email))
+      setOrderListHistory(response.data)
       setPageRefesh(true)
       
     } catch (error) {
@@ -27,22 +27,22 @@ function CartPage({userProfile: {email}}){
 
   useEffect(() => {
     window.scroll(0,0)
-    getShoppingList()
+    getOrderListHistory()
   }, [pageRefesh]);
 
-    return (
-      <>
-      <div className="Desktop">
-        <NavMenuDesktop />
-      </div>
+  return (
+    <>
+    <div className="Desktop">
+      <NavMenuDesktop />
+    </div>
 
-      <div className="Mobile">
-        <NavMenuMobile />  
-      </div>      
-    
-          <Cart email={email} shoppingList={shoppingList} setPageRefesh={setPageRefesh}/>
+    <div className="Mobile">
+      <NavMenuMobile />  
+    </div>     
 
-      <div className="Desktop">
+   <OrderList email={email} orderListHistory={orderListHistory}  setPageRefesh={setPageRefesh} />
+
+   <div className="Desktop">
         <FooterDesktop/>
       </div>
 
@@ -51,8 +51,7 @@ function CartPage({userProfile: {email}}){
       </div>
       
     </>
-    )
-  
+  )
 }
 
-export default CartPage
+export default OrderListPage

@@ -54,7 +54,9 @@ class AppURL {
   }
 
   static CartOrder = this.BaseURL+"/cartorder";
-
+  static OrderHistory(email){
+    return this.BaseURL+"/orderhistory/"+email;
+  }
 
 
   static CartCount(product_code){

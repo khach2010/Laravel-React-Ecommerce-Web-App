@@ -23,9 +23,6 @@ function ProductDetails({dataDetails, dataList, user, setCartCount}) {
 
      const myView = chooseDataView (dataDetails, dataList)
 
-     let navigate = useNavigate();
-     
-
      function chooseDataView(details, list){
           if(details.length === 0) {
                return (
