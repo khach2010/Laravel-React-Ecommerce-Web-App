@@ -13,7 +13,6 @@ function Cart({shoppingList, setPageRefesh, email}) {
   const [payment, setPayment] = useState('')
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
-  const [confirmBtn, setConfirmBtn] = useState('')
 
   let navigate = useNavigate();
 

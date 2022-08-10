@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import FooterDesktop from '../components/common/FooterDesktop'
 import FooterMobile from '../components/common/FooterMobile'
 import NavMenuDesktop from '../components/common/NavMenuDesktop'
@@ -9,26 +10,21 @@ import OrderList from '../components/Cart/OrderList'
 
 
 function OrderListPage({userProfile: {email}}) {
-  const [pageRefesh, setPageRefesh] = useState(false)
   const [orderListHistory, setOrderListHistory] = useState([])
-
+  
   async function getOrderListHistory() {
     try {
       const response = await axios.get(AppURL.OrderHistory(email))
-      setOrderListHistory(response.data)
-      setPageRefesh(true)
-      
+      return setOrderListHistory(response.data)
     } catch (error) {
-      console.log(error)
-      setPageRefesh(false)
+      return console.log(error)
     }
   }
-
 
   useEffect(() => {
     window.scroll(0,0)
     getOrderListHistory()
-  }, [pageRefesh]);
+  }, [email])
 
   return (
     <>
@@ -40,7 +36,7 @@ function OrderListPage({userProfile: {email}}) {
       <NavMenuMobile />  
     </div>     
 
-   <OrderList email={email} orderListHistory={orderListHistory}  setPageRefesh={setPageRefesh} />
+   <OrderList email={email} orderListHistory={orderListHistory} />
 
    <div className="Desktop">
         <FooterDesktop/>
