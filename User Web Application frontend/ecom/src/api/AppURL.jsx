@@ -33,8 +33,8 @@ class AppURL {
   static SimilarProduct(subcategory){
     return this.BaseURL+"/similar/"+subcategory;
   }
-  static ReviewProduct(id){
-    return this.BaseURL+"/reviewlist/"+id;
+  static ReviewProduct(product_code){
+    return this.BaseURL+"/reviewlist/"+product_code;
   }
 
    

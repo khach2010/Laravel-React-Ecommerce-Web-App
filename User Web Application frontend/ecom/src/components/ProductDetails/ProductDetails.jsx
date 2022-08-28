@@ -243,10 +243,10 @@ function ProductDetails({dataDetails, dataList, user, setCartCount}) {
  
       <Row>
            <Col className="" md={6} lg={6} sm={12} xs={12}>
-           <h6 className="mt-2">DETAILS</h6>
+           <h6 className="mt-2">DETAILS {product_id}</h6>
                     {long_description}
            </Col>
-           <ReviewList id={product_id} />
+           <ReviewList product_id={product_id} />
       </Row>
  </Col>
 

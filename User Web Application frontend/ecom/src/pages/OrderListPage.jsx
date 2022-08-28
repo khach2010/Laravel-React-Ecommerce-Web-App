@@ -9,7 +9,7 @@ import axios from 'axios'
 import OrderList from '../components/Cart/OrderList'
 
 
-function OrderListPage({userProfile: {email}}) {
+function OrderListPage({userProfile: {email, name}}) {
   const [orderListHistory, setOrderListHistory] = useState([])
   
   async function getOrderListHistory() {
@@ -36,7 +36,10 @@ function OrderListPage({userProfile: {email}}) {
       <NavMenuMobile />  
     </div>     
 
-   <OrderList email={email} orderListHistory={orderListHistory} />
+    <div className='responsive'>
+      <OrderList name={name} email={email} orderListHistory={orderListHistory} />
+    </div>
+  
 
    <div className="Desktop">
         <FooterDesktop/>

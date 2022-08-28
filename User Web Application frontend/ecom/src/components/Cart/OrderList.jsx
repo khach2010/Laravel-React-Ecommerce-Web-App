@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Container, Row, Col,Button,Card, Modal} from 'react-bootstrap';
 
 
-function OrderList({orderListHistory}) {
+function OrderList({orderListHistory, name}) {
   const [show, setShow] = useState(false);
 
  
@@ -31,10 +31,9 @@ function OrderList({orderListHistory}) {
 
   return (
     <>
-        <h1>order list page </h1>
       <Container>
         <div className="section-title text-center mb-55">
-          <h2>Order History </h2>
+          <h2>Order History by {name}</h2>
         </div>
 
         <Card >                

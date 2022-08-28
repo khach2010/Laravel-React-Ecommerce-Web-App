@@ -5,8 +5,9 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 import AppURL from '../../api/AppURL'
 import axios from 'axios'
 
-function ReviewList({id}) {
+function ReviewList({product_id}) {
   const [productReviewData, setProductReviewData] = useState({})
+ 
   let myView
     if(productReviewData.length > 0) {
       myView = productReviewData.map((review) => {
@@ -81,10 +82,11 @@ function ReviewList({id}) {
 
   async function getProductReview() {
     try {
-      const response = await axios.get(AppURL.ReviewProduct(id))
+      const response = await axios.get(AppURL.ReviewProduct(product_id))
       setProductReviewData(response.data)
+      console.log(response)
     } catch (error) {
-      console.log(error)
+      // console.log(error)
     }
   }
 
@@ -92,10 +94,12 @@ function ReviewList({id}) {
          getProductReview()
     }, [])
 
+    console.log(product_id)
+
 
   return (
     <Col className="" md={6} lg={6} sm={12} xs={12}>
-     <h4 className='mt-3'>Reviews</h4>
+     <h4 className='mt-3'>Reviews {product_id}</h4>
     
     {myView}
 
