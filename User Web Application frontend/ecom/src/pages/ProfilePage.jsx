@@ -15,8 +15,11 @@ function ProfilePage({userProfile}) {
     <div className="Mobile">
     <NavMenuMobile />  
     </div>                       
-
-     <Profile userData={userProfile}/> 
+    
+    <div className='responsive'>
+      <Profile userData={userProfile}/> 
+    </div>
+     
 
     <div className="Desktop">
     <FooterDesktop/>
