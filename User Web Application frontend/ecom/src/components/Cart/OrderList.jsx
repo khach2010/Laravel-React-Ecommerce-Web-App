@@ -1,18 +1,21 @@
+import { setSelectionRange } from '@testing-library/user-event/dist/utils';
 import React, {useState, useEffect} from 'react'
 import {Container, Row, Col,Button,Card, Modal} from 'react-bootstrap';
 
 
-function OrderList({orderListHistory, name}) {
+function OrderList({orderListHistory, email}) {
   const [show, setShow] = useState(false);
+  const [name, setName] = useState('')
+  const [rating, setRating] = useState('')
+  const [comment, setComment] = useState('')
+  const [productName, setProductName] = useState('')
+  const [productCode, setProductCode] = useState('')
 
- 
   const handleClose = () => setShow(false);
   const handleShow = () => {
     setShow(true);
-  
-  } 
-
-  
+  }
+    
   const myView = orderListHistory.map((order) => {
     const {product_name, quantity, size, color, unit_price, total_price, order_status, invoice_no} = order
 
@@ -29,11 +32,16 @@ function OrderList({orderListHistory, name}) {
          </div>
   })
 
+  const PostReview = () => {
+    console.log(name, rating, comment)
+  }
+
+
   return (
     <>
       <Container>
         <div className="section-title text-center mb-55">
-          <h2>Order History by {name}</h2>
+          <h2>Order History by {email}</h2>
         </div>
 
         <Card >                
@@ -49,13 +57,33 @@ function OrderList({orderListHistory, name}) {
             <Modal.Title>Product review</Modal.Title>
             
           </Modal.Header>
-          <Modal.Body>Preview Details</Modal.Body>
+          <Modal.Body> 
+            <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
+              <label className="form-label">Your Name</label>
+              <input onChange={(e) => setName(e.target.value)} className="form-control" type="text" placeholder=""/>
+            </div>
+            <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
+                <label className="form-label">Select Product Rating</label>
+                <select onChange={(e) => setRating(e.target.value)} className="form-control">
+                <option value="">Choose</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                </select>
+            </div>
+            <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
+                <label className="form-label">Your Comment</label>
+                <textarea onChange={(e) => setComment(e.target.value)}  rows={2} className="form-control" type="text" placeholder="Your Comment" />   
+            </div>
+          </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
+            <Button variant="secondary" onClick={PostReview}>
+              Post
             </Button>
             <Button variant="primary" onClick={handleClose}>
-              Save Changes
+              Close
             </Button>
           </Modal.Footer>
         </Modal>
