@@ -1,7 +1,9 @@
-import { setSelectionRange } from '@testing-library/user-event/dist/utils';
 import React, {useState, useEffect} from 'react'
 import {Container, Row, Col,Button,Card, Modal} from 'react-bootstrap';
-
+import axios from 'axios';
+import AppURL from '../../api/AppURL'
+import { ToastContainer, toast } from 'react-toastify';
+import { faL } from '@fortawesome/free-solid-svg-icons';
 
 function OrderList({orderListHistory, email}) {
   const [show, setShow] = useState(false);
@@ -12,28 +14,64 @@ function OrderList({orderListHistory, email}) {
   const [productCode, setProductCode] = useState('')
 
   const handleClose = () => setShow(false);
-  const handleShow = () => {
+  const handleShow = (prodName, proCode) => {
     setShow(true);
+    setProductName(prodName)
+    setProductCode(proCode)
   }
     
   const myView = orderListHistory.map((order) => {
-    const {product_name, quantity, size, color, unit_price, total_price, order_status, invoice_no} = order
+    const {product_name, product_code, quantity, size, color, unit_price, total_price, order_status, invoice_no} = order
 
     return <div>
             <Col key={invoice_no} md={6} lg={6} sm={6} xs={6}>
-            <h5 className="product-name">{product_name}</h5>
+            <h5 className="product-name">{product_name} - {product_code}</h5>
             <h6> Quantity = {quantity} </h6>
             <p>{size} | {color}</p>
             <h6>Price = {unit_price} x {quantity} = {total_price}$</h6>
             <h6>Status = {order_status} </h6>
             </Col>
-            <Button onClick={handleShow} className="btn btn-danger">Post Review </Button>
+            <Button onClick={() => handleShow(product_name, product_code)} className="btn btn-danger">Post Review </Button>
               <hr></hr>
          </div>
   })
 
   const PostReview = () => {
-    console.log(name, rating, comment)
+    let formData
+    if(name.length===0){
+      toast.error("Name Is Required");
+      }
+      else if(comment.length===0){
+            toast.error("Comment Is Required");
+      }
+      else if(rating.length===0){
+            toast.error("Rating Is Required");
+      }
+      else if(comment.length>150){
+            toast.error("Comments can't more then 150 character");
+      }
+      else {
+        formData = {
+          'product_name' : productName,
+          'product_code' : productCode,
+          'reviewer_name' : name,
+          'reviewer_photo' : '',
+          'reviewer_rating' : rating,
+          'reviewer_comments' : comment
+        }
+        axios.post(AppURL.PostReview, formData)
+        .then(res => {
+          if(res.data === 1) {
+             toast.success('thanks for your rating')
+             setShow(false)
+          } else {
+            toast.error("Something went wrong, please try again");
+          }
+        })
+        .catch(err => {
+          toast.error("Something went wrong, please try again");
+        })
+      }
   }
 
 
@@ -46,9 +84,12 @@ function OrderList({orderListHistory, email}) {
 
         <Card >                
           <Card.Body>
-          <Row>
-              {myView}
-          </Row>              
+            <Row>
+              <ToastContainer position="top-right" autoClose={3000} />
+            </Row>
+            <Row>
+                {myView}
+            </Row>              
           </Card.Body>               
         </Card>
 

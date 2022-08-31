@@ -33,13 +33,17 @@ class AppURL {
   static SimilarProduct(subcategory){
     return this.BaseURL+"/similar/"+subcategory;
   }
+
+  
+
   static ReviewProduct(product_code){
     return this.BaseURL+"/reviewlist/"+product_code;
   }
+  static PostReview = this.BaseURL+"/postreview"
+  
+  
 
-   
   static addToCart = this.BaseURL+"/addtocart";
-
   static ShoppingCartReview(email){
     return this.BaseURL+"/shoppingcartreview/"+email;
   }
