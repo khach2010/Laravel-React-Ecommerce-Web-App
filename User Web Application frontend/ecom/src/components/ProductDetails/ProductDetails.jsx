@@ -2,7 +2,7 @@ import React, { useState, use } from 'react'
 import { Container,Row,Col } from 'react-bootstrap'
 import ReactDOM from 'react-dom'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import SuggestedProduct from './SuggestedProduct'
 import ReviewList from './ReviewList'
 import AppURL from '../../api/AppURL'
@@ -20,6 +20,8 @@ function ProductDetails({dataDetails, dataList, user, setCartCount}) {
      const [isColor, setIsColor] = useState(null)
      const [cartAdded, setCartAdded] = useState(false)
      const [favStatus, setFavStatus] = useState('Favourite')
+
+     let navigate = useNavigate();
 
      const myView = chooseDataView (dataDetails, dataList)
 
@@ -101,6 +103,40 @@ function ProductDetails({dataDetails, dataList, user, setCartCount}) {
                     } 
                     
                }
+
+               function OrderNow() {
+                    if(isColor==="YES" && colorCart.length===0){
+                         toast.error("Error Notification Color!");
+                    }
+                    else if(isSize==="YES" && sizeCart.length===0){
+                         toast.error("Error Notification Size!");
+                    } 
+                    else if(quantityCart.length===0){
+                         toast.error("Error Notification Quantity!");
+                    } 
+                    else if (!localStorage.getItem('token')){
+                         toast.error("Please Login First");
+                    } else {
+                        let formData = {'size': sizeCart, 'color': colorCart,  "quantity": quantityCart,"product_code": productCode, 'email': user.userProfile.email}
+
+                       axios.post(AppURL.addToCart, formData)
+                       .then(res => {
+                         if(res.data === 1) {
+                              navigate('/cart')
+                         } else {
+                              toast.error("your request is not successfully add");
+                              setCartAdded(false)
+                         }
+                       })
+                       .catch(err => {
+                         toast.error(err.message);
+                         setCartAdded(false)
+                       })
+                    } 
+                    
+               }
+
+               
 
                function pageRefresh() {             
                     if(cartAdded===true) {
@@ -235,7 +271,7 @@ function ProductDetails({dataDetails, dataList, user, setCartCount}) {
            <div className="input-group mt-3">
                 <ToastContainer position="top-right" autoClose={3000} />
                 <button onClick={AddToCart} className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i>  Add To Cart</button>
-                <button className="btn btn-primary m-1"> <i className="fa fa-car"></i> Order Now</button>
+                <button onClick={OrderNow} className="btn btn-primary m-1"> <i className="fa fa-car"></i> Order Now</button>
                 <button onClick={AddToFav} className="btn btn-primary m-1"> <i className="fa fa-heart"></i>{favStatus}</button>
            </div>
            </Col>
