@@ -15,6 +15,9 @@ function Cart({shoppingList, setPageRefesh, email}) {
   const [address, setAddress] = useState('')
 
   let navigate = useNavigate();
+  if(!localStorage.getItem('token')){
+    return <navigate to="/login" />
+}
 
   const confirmOnClick = () => {
     if(city.length===0){
@@ -148,7 +151,6 @@ function Cart({shoppingList, setPageRefesh, email}) {
           </Col> 
   })
   
-
 
 
     return (

@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import {Container, Row, Col,Button,Card, Modal} from 'react-bootstrap';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'
 import AppURL from '../../api/AppURL'
 import { ToastContainer, toast } from 'react-toastify';
 import { faL } from '@fortawesome/free-solid-svg-icons';
+
 
 function OrderList({orderListHistory, email}) {
   const [show, setShow] = useState(false);
@@ -12,6 +14,12 @@ function OrderList({orderListHistory, email}) {
   const [comment, setComment] = useState('')
   const [productName, setProductName] = useState('')
   const [productCode, setProductCode] = useState('')
+
+
+  let navigate = useNavigate();
+  if(!localStorage.getItem('token')){
+    return <navigate to="/login" />
+  }
 
   const handleClose = () => setShow(false);
   const handleShow = (prodName, proCode) => {
