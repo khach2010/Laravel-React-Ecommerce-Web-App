@@ -18,7 +18,7 @@
 	<link href="{{ asset('backend/assets/css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('backend/assets/css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('backend/assets/css/icons.css') }}" rel="stylesheet">
-	<title>E-commerce Webshop</title>
+	<title>E-commerce Webshop - Login Page</title>
 </head>
 
 <body class="bg-login">
@@ -34,7 +34,7 @@
 								<div class="border p-4 rounded">
 									<div class="text-center">
 										<h3 class="">Sign in</h3>
-										<p>Don't have an account yet? <a href="authentication-signup.html">Sign up here</a>
+										<p>Don't have an account yet? <a href="{{ route('register') }}">Sign up here</a>
 										</p>
 									</div>
 
@@ -75,7 +75,7 @@
         </div>
     </div>
 
-        <div class="col-md-6 text-end">	<a href="authentication-forgot-password.html">Forgot Password ?</a>
+        <div class="col-md-6 text-end">	<a href="{{route('password.request') }}">Forgot Password ?</a>
         </div>
         <div class="col-12">
             <div class="d-grid">
